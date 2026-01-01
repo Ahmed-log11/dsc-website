@@ -1,4 +1,4 @@
-// src/components/Navbar.jsx
+
 import { useTranslation } from "react-i18next";
 import LanguageSwitcher from "../LanguageSwitcher";
 import logo from "../assets/logo.png";
@@ -17,26 +17,22 @@ export default function Navbar() {
         `}
       >
         {/* logo + club name */}
-       
-          {/* placeholder logo box - later you put img here */}
-       {/* logo + club name */}
-<div className="flex items-center gap-3">
-  <img 
-    src={logo} 
-    alt="DSC Logo" 
-    className="w-12 h-12 object-contain rounded-xl"
-  />
+        <div className="flex items-center gap-3">
+          <img
+            src={logo}
+            alt="DSC Logo"
+            className="w-12 h-12 object-contain rounded-xl"
+          />
 
-  <div className="flex flex-col leading-tight text-white">
-    <span className="text-sm font-semibold">
-      {t("navbar.clubName")}
-    </span>
-    <span className="text-xs text-white/70">
-      {t("navbar.facultyName")}
-    </span>
-  </div>
-</div>
-
+          <div className="flex flex-col leading-tight text-white">
+            <span className="text-sm font-semibold">
+              {t("navbar.clubName")}
+            </span>
+            <span className="text-xs text-white/70">
+              {t("navbar.facultyName")}
+            </span>
+          </div>
+        </div>
 
         {/* nav links */}
         <div
@@ -45,19 +41,36 @@ export default function Navbar() {
             ${isArabic ? "flex-row-reverse" : "flex-row"}
           `}
         >
-          <a href="#home" className="text-orange-400 font-semibold">
+          {/* All white, hover orange */}
+          <a
+            href="#home"
+            className="text-white hover:text-orange-400 transition-colors duration-200"
+          >
             {t("navbar.home")}
           </a>
-          <a href="#sections" className="text-white/80 hover:text-white">
+
+          <a
+            href="#sections"
+            className="text-white hover:text-orange-400 transition-colors duration-200"
+          >
             {t("navbar.sections")}
           </a>
-          <a href="#events" className="text-white/80 hover:text-white">
+
+          <a
+            href="#events"
+            className="text-white hover:text-orange-400 transition-colors duration-200"
+          >
             {t("navbar.events")}
           </a>
-          <a href="#contact" className="text-white/80 hover:text-white">
+
+          <a
+            href="#contact"
+            className="text-white hover:text-orange-400 transition-colors duration-200"
+          >
             {t("navbar.contact")}
           </a>
 
+          {/* Language button */}
           <LanguageSwitcher />
         </div>
       </nav>
