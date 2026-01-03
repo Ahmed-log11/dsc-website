@@ -1,4 +1,3 @@
-
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import heroBg from "../assets/hero-bg.jpg";
@@ -14,19 +13,17 @@ export default function Herosection() {
   useEffect(() => {
     if (!fullText) return;
 
-    const typingSpeed = isDeleting ? 45 : 90; // ms per char
+    const typingSpeed = isDeleting ? 45 : 90;
 
     const timer = setTimeout(() => {
       if (!isDeleting) {
-        // typing
         const next = fullText.slice(0, displayedText.length + 1);
         setDisplayedText(next);
 
         if (next === fullText) {
-          setTimeout(() => setIsDeleting(true), 1000); // pause at the end
+          setTimeout(() => setIsDeleting(true), 1000);
         }
       } else {
-        // deleting
         const next = fullText.slice(0, displayedText.length - 1);
         setDisplayedText(next);
 
@@ -40,7 +37,6 @@ export default function Herosection() {
   }, [displayedText, isDeleting, fullText]);
 
   // ============ COLOR LAST 3 WORDS ============
- 
   let restFull = fullText;
   let lastFull = "";
 
@@ -52,13 +48,16 @@ export default function Herosection() {
   }
 
   const visible = displayedText;
-  const visibleRest = visible.slice(0, Math.min(visible.length, restFull.length));
-  const visibleLast = visible.slice(visibleRest.length); 
+  const visibleRest = visible.slice(
+    0,
+    Math.min(visible.length, restFull.length)
+  );
+  const visibleLast = visible.slice(visibleRest.length);
 
   return (
     <section
       id="home"
-      className="relative h-screen text-white overflow-hidden"
+      className="relative min-h-screen text-white overflow-hidden"
     >
       {/* Background image */}
       <div className="absolute inset-0">
@@ -71,9 +70,8 @@ export default function Herosection() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 flex items-center justify-center h-full">
+      <div className="relative z-10 flex items-center justify-center min-h-screen">
         <div className="text-center px-4">
-          {/* Smaller title + color last 3 words */}
           <h1 className="text-xl md:text-3xl font-bold leading-snug mb-4">
             {visibleRest}
             {visibleLast && (
@@ -90,7 +88,7 @@ export default function Herosection() {
         </div>
       </div>
 
-      {/* Adjusted curve closer to Figma */}
+      {/* Curve */}
       <svg
         className="absolute bottom-0 left-0 w-full"
         viewBox="0 0 1440 160"
