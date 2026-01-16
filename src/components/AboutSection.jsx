@@ -8,15 +8,15 @@ export default function AboutSection() {
   return (
     <section id="about" className="bg-white py-12 sm:py-16 lg:py-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 md:grid-cols-2 gap-10 items-center">
 
           {/* Abstract logo */}
-          <div className="hidden min-[600px]:flex justify-center lg:justify-start">
+          <div className="hidden min-[770px]:flex justify-center lg:justify-start">
             <img
               src={abstractLogo}
-              alt=""
+              alt="Abstract Logo DSC"
               aria-hidden="true"
-              className="w-[380px] lg:w-[420px] opacity-90"
+              className="w-[380px] lg:w-[420px]  opacity-90"
             />
           </div>
 
@@ -41,7 +41,7 @@ export default function AboutSection() {
               {t("about.desc")}
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+            <div className="grid grid-cols-2 md:grid-cols-2 gap-8 lg:gap-10">
               {/* Vision */}
               <div>
                 <h3

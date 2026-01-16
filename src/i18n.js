@@ -30,13 +30,16 @@ i18n.use(initReactI18next).init({
         },
         about: {
           title: "Who We Are",
-          desc: "The Data Science Club is a student community at the Faculty of Computing and IT, aiming to be a leading source of inspiration and innovation in data science. It brings together ambitious students in a collaborative environment to transform data into value aligned with Saudi Vision 2030.",
+          desc: "The Data Science Club is a student-led community within the Faculty of Computing and Information Technology at King Abdulaziz University.",
           visionTitle: "Our Vision",
           visionText:
-            "To be a leading student community that fosters creativity, empowers students to develop their skills, and shapes future leaders in data science.",
+            "To create an empowering space for data science through hands-on practice rather than theory alone, fostering shared learning through real-world projects and practical challenges.",
           missionTitle: "Our Mission",
           missionText:
-            "Empowering students to explore the power of data through hands-on workshops, advanced training, and expert-led sessions to build innovative solutions across various sectors.",
+            "To cultivate a generation of students capable of working confidently with data and transforming it into actionable decisions and deployable models using the right tools.",
+        },
+        footerSection: {
+          copyright: "© 2025 All rights reserved | Tech Department Team",
         },
       },
     },
@@ -58,13 +61,16 @@ i18n.use(initReactI18next).init({
 
         about: {
           title: "من نحن:",
-          desc: "نادي علم البيانات هو مجتمع طلابي في كلية الحاسبات وتقنية المعلومات يسعى ليكون المصدر الأول للإلهام والابتكار في مجال علم البيانات، حيث يجمع الطلاب الطموحين في بيئة متماسكة تهدف إلى تحويل البيانات إلى قيمة مضافة تسهم في تحقيق رؤية المملكة 2030.",
+          desc: "نادي علم البيانات هو مجتمع طلابي بكلية الحاسبات وتقنية المعلومات بجامعة الملك عبدالعزيز.",
           visionTitle: "رؤيتنا:",
           visionText:
-            "أن نكون مجتمعًا طلابيًا رائدًا يحفز الإبداع، ويمكن الطلاب من تطوير مهاراتهم، ليساهموا في تشكيل جيل قادة المستقبل في مجال علم البيانات.",
+            "إقامة مساحة معززة لعلم البيانات بالممارسة، لا بالاكتفاء النظري، وبناء الخبرات معًا عبر مشاريع حقيقية وتحديات عملية.",
           missionTitle: "رسالتنا:",
           missionText:
-            "تمكين الطلاب من اكتشاف قوة البيانات واستثمارها، من خلال تزويدهم بالأدوات والمهارات اللازمة عبر ورش عمل تفاعلية، دورات تدريبية متقدمة، لقاءات مرئية مع خبراء المجال، مما يساعدهم على بناء حلول إبداعية تدفع عجلة التقدم في مختلف القطاعات.",
+            "صناعة جيل طلابي متمكن من التعامل مع البيانات وتحويلها إلى قرارات ونماذج تنفيذية بالأدوات المناسبة.",
+        },
+        footerSection: {
+          copyright: "© 2025 جميع الحقوق محفوظة | فريق قسم التقنية",
         },
       },
     },
