@@ -2,6 +2,8 @@
 import Navbar from "./components/Navbar";
 import Herosection from "./components/Herosection";
 import Departments from "./components/Departments";
+import AboutSection from "./components/AboutSection";
+import FooterSection from "./components/FooterSection";
 
 export default function App() {
   return (
@@ -10,6 +12,8 @@ export default function App() {
       <Herosection />
       
       <Departments/>
+      <AboutSection />
+      <FooterSection />
     </div>
   );
 }
