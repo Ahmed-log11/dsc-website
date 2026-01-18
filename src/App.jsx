@@ -10,9 +10,9 @@ export default function App() {
     <div className="min-h-screen bg-slate-900">
       <Navbar />
       <Herosection />
-      
-      <Departments/>
       <AboutSection />
+      <Departments/>
+      
       <FooterSection />
     </div>
   );
