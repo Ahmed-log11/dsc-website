@@ -1,6 +1,7 @@
 // src/App.jsx
 import Navbar from "./components/Navbar";
 import Herosection from "./components/Herosection";
+import Departments from "./components/Departments";
 import AboutSection from "./components/AboutSection";
 import FooterSection from "./components/FooterSection";
 
@@ -9,6 +10,8 @@ export default function App() {
     <div className="min-h-screen bg-slate-900">
       <Navbar />
       <Herosection />
+      
+      <Departments/>
       <AboutSection />
       <FooterSection />
     </div>
