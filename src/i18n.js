@@ -50,8 +50,17 @@ i18n.use(initReactI18next).init({
           mediaTitle: 'Marketing & Media',
           mediaDescription :"Highlights the club’s identity and showcases its activities through effective and innovative media content and digital marketing.",
 
-        }
+        },
+        xPosts: {
+  title: "Latest on X",
+  viewPost: "View post",
+}
+    
+
       },
+  
+
+
     },
     ar: {
       translation: {
@@ -72,11 +81,11 @@ i18n.use(initReactI18next).init({
         departments: {
           title :'أقسام نادي علم البيانات',
           TechTitle: "التقنية",
-          TechDescription: "يعنى بتطوير الحلول التقنية ودعم المشاريع البرمجية وعلم البيانات، مع تمكين الأعضاء من التطبيق العملي لمهاراتهم",
+          TechDescription: "يعمل قسم التقنية على تطوير الحلول التقنية ومشاريع علم البيانات، ودعم الأعضاء في التطبيق العملي وبناء مهاراتهم البرمجية.",
           prTitle:"العلاقات والأنشطة",
-          prDescription:"مسؤول عن تعزيز صورة النادي وبناء التواصل مع الجهات الداخلية والخارجية وتنظيم الشراكات والفعاليات",
+          prDescription:"يعمل قسم العلاقات والأنشطة على تعزيز صورة النادي وبناء التواصل مع الجهات الداخلية والخارجية، وتنظيم الشراكات والفعاليات.",
           mediaTitle: "التسويق والإعلام",
-          mediaDescription:"يعمل على إبراز هوية النادي والتعريف بأنشطته عبر المحتوى الإعلامي والتسويق الرقمي الفعّال والمبتكر",
+          mediaDescription:"يعمل قسم التسويق والإعلام على إبراز هوية النادي والتعريف بأنشطته عبر المحتوى الإعلامي والتسويق الرقمي الفعّال والمبتكر.",
         },
 
         about:{
@@ -92,7 +101,13 @@ i18n.use(initReactI18next).init({
         footerSection: {
           copyright: "© 2025 جميع الحقوق محفوظة | فريق قسم التقنية",
         },
+           xPosts: {
+  title: "آخر ما نُشر على X",
+  viewPost: "عرض المنشور",
+}
       },
+   
+
     },
   },
 });
