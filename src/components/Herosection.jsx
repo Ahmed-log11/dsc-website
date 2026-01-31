@@ -1,110 +1,151 @@
 import { useTranslation } from "react-i18next";
-import { useEffect, useState } from "react";
-import heroBg from "../assets/hero-bg.jpg";
+import { useEffect, useMemo, useState } from "react";
+import LogoInteractive from "./LogoInteractive";
 
 export default function Herosection() {
-  const { t } = useTranslation();
-  const fullText = t("hero.title") || "";
+  const { t, i18n } = useTranslation();
 
-  // ============ TYPEWRITER STATE ============
+  // ====== ACCENT STATE (logo hover) ======
+  const [accentMode, setAccentMode] = useState("orange");
+
+  const ACCENTS = useMemo(
+    () => ({
+      blue: "#0c3a60",
+      green: "#35c6a8",
+      orange: "#ff7043",
+    }),
+    []
+  );
+
+  // ====== TYPEWRITER ======
+  const fullText = t("hero.title") || "";
   const [displayedText, setDisplayedText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
     if (!fullText) return;
 
-    const typingSpeed = isDeleting ? 45 : 90;
-
+    const speed = isDeleting ? 45 : 90;
     const timer = setTimeout(() => {
       if (!isDeleting) {
         const next = fullText.slice(0, displayedText.length + 1);
         setDisplayedText(next);
-
-        if (next === fullText) {
-          setTimeout(() => setIsDeleting(true), 1000);
-        }
+        if (next === fullText) setTimeout(() => setIsDeleting(true), 1000);
       } else {
         const next = fullText.slice(0, displayedText.length - 1);
         setDisplayedText(next);
-
-        if (next === "") {
-          setIsDeleting(false);
-        }
+        if (next === "") setIsDeleting(false);
       }
-    }, typingSpeed);
+    }, speed);
 
     return () => clearTimeout(timer);
   }, [displayedText, isDeleting, fullText]);
 
-  // ============ COLOR LAST 3 WORDS ============
-  let restFull = fullText;
-  let lastFull = "";
-
+  // ====== LAST 3 WORDS ======
+  let rest = fullText;
+  let last = "";
   const words = fullText.trim().split(/\s+/);
+
   if (words.length >= 3) {
-    lastFull = words.slice(-3).join(" ");
-    const cutIndex = fullText.lastIndexOf(lastFull);
-    restFull = fullText.slice(0, cutIndex).trimEnd();
+    last = words.slice(-3).join(" ");
+    rest = fullText.slice(0, fullText.lastIndexOf(last)).trimEnd();
   }
 
-  const visible = displayedText;
-  const visibleRest = visible.slice(
-    0,
-    Math.min(visible.length, restFull.length)
-  );
-  const visibleLast = visible.slice(visibleRest.length);
+  const visibleRest = displayedText.slice(0, rest.length);
+  const visibleLast = displayedText.slice(rest.length);
+
+  // ====== LANGUAGE / LAYOUT ======
+  const isArabic = i18n.language?.startsWith("ar");
+  const toggleLang = () =>
+    i18n.changeLanguage(isArabic ? "en" : "ar");
 
   return (
     <section
       id="home"
       className="relative min-h-screen text-white overflow-hidden"
+      style={{ "--accent": ACCENTS[accentMode] }}
     >
-      {/* Background image */}
-      <div className="absolute inset-0">
-        <img
-          src={heroBg}
-          alt="Data Science Club"
-          className="w-full h-full object-cover"
+      {/* Background */}
+      <div className="absolute inset-0 bg-[#1a1a1a]">
+        {/* Accent glow */}
+        <div
+          className="absolute inset-0 opacity-50"
+          style={{
+            background:
+              "radial-gradient(800px circle at center, color-mix(in srgb, var(--accent) 30%, transparent), transparent 60%)",
+          }}
         />
-        <div className="absolute inset-0 bg-slate-950/70" />
       </div>
 
       {/* Content */}
-      <div className="relative z-10 flex items-center justify-center min-h-screen">
-        <div className="text-center px-4">
-          <h1 className="text-xl md:text-3xl font-bold leading-snug mb-4">
-            {visibleRest}
-            {visibleLast && (
-              <span className="text-orange-400">{visibleLast}</span>
-            )}
-            <span className="ml-1 border-r-2 border-orange-400 animate-pulse">
-              &nbsp;
-            </span>
-          </h1>
+      <div className="relative z-10 min-h-screen flex items-center">
+        <div className="w-full max-w-5xl mx-auto px-6">
+          <div
+  className={`flex flex-col md:flex-row items-center justify-center gap-8 md:gap-10 transition-all ${
+    isArabic ? "md:flex-row-reverse" : "md:flex-row"
+  }`}
+  dir={isArabic ? "rtl" : "ltr"}
+>
 
-          <p className="text-sm md:text-base text-white/70">
-            {t("hero.subtitle")}
-          </p>
+            {/* Logo */}
+            <div className="w-[220px] md:w-[320px]">
+              <LogoInteractive
+                onHover={setAccentMode}
+                onLeave={() => setAccentMode("orange")}
+                onClick={toggleLang}
+              />
+            </div>
+
+            {/* Typewriter + micro accent */}
+            <div
+              className={`relative max-w-xl ${
+                isArabic ? "text-right" : "text-left"
+              }`}
+            >
+              {/* Micro-accent border */}
+              <span
+                className={`absolute top-1 bottom-1 w-[2px] opacity-60 ${
+                  isArabic ? "right-[-12px]" : "left-[-12px]"
+                }`}
+                style={{ backgroundColor: "var(--accent)" }}
+              />
+
+              <h1 className="text-xl md:text-3xl font-bold leading-snug">
+                {visibleRest}
+                <span style={{ color: "var(--accent)" }}>
+                  {visibleLast}
+                </span>
+                <span
+                  className={`border-r-2 animate-pulse ${
+                    isArabic ? "mr-1" : "ml-1"
+                  }`}
+                  style={{ borderColor: "var(--accent)" }}
+                >
+                  &nbsp;
+                </span>
+              </h1>
+
+              <p className="mt-3 text-sm md:text-base text-white/70">
+                {t("hero.subtitle")}
+              </p>
+            </div>
+          </div>
         </div>
       </div>
+      {/* Bottom fade into white section */}
 
-      {/* Curve */}
-      <svg
-        className="absolute bottom-0 left-0 w-full"
-        viewBox="0 0 1440 160"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="
-            M0,120
-            C360,180 900,40 1440,110
-            L1440,160
-            L0,160
-            Z
-          "
-          fill="#ffffff"
-        />
-      </svg>
+{/* Curve transition */}
+<svg
+  className="pointer-events-none absolute bottom-0 left-0 w-full"
+  viewBox="0 0 1440 140"
+  preserveAspectRatio="none"
+>
+  <path
+    d="M0,90 C360,150 900,30 1440,90 L1440,140 L0,140 Z"
+    fill="#ffffff"
+  />
+</svg>
+
     </section>
   );
 }
