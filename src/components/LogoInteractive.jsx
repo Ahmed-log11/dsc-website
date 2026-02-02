@@ -59,6 +59,41 @@ export default function LogoInteractive({ onHover, onLeave }) {
     if (!activeMode) setAnchor(null);
     onLeave?.();
   };
+useEffect(() => {
+  const close = () => {
+    setHoverMode(null);
+    setActiveMode(null);
+    setAnchor(null);
+    onLeave?.();
+  };
+
+  window.addEventListener("mousedown", close);
+  window.addEventListener("touchstart", close, { passive: true });
+
+  return () => {
+    window.removeEventListener("mousedown", close);
+    window.removeEventListener("touchstart", close);
+  };
+}, [onLeave]);
+useEffect(() => {
+  let ticking = false;
+
+  const closeOnScroll = () => {
+    if (ticking) return;
+    ticking = true;
+
+    requestAnimationFrame(() => {
+      setHoverMode(null);
+      setActiveMode(null);
+      setAnchor(null);
+      onLeave?.();
+      ticking = false;
+    });
+  };
+
+  window.addEventListener("scroll", closeOnScroll, true);
+  return () => window.removeEventListener("scroll", closeOnScroll, true);
+}, [onLeave]);
 
   // Desktop hover + fix sticky
   const handleMouseMove = (e) => {
@@ -237,6 +272,7 @@ export default function LogoInteractive({ onHover, onLeave }) {
               "0 12px 34px rgba(0,0,0,0.25), 0 0 0 1px color-mix(in srgb, var(--accent) 18%, transparent)",
           }}
         >
+          
           <div
             className="text-sm font-semibold"
             style={{ color: "color-mix(in srgb, var(--accent) 90%, white)" }}
@@ -247,6 +283,7 @@ export default function LogoInteractive({ onHover, onLeave }) {
           <div className="mt-2 text-[11px] text-white/50">Tap a shape again to close.</div>
         </div>
       )}
+      
     </div>
   );
 }

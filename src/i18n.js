@@ -28,16 +28,17 @@ i18n.use(initReactI18next).init({
           subtitle:
             "A student community for learning and practicing data science.",
         },
-        about: {
+    about: {
           title: "Who We Are",
-          desc: "The Data Science Club is a student-led community within the Faculty of Computing and Information Technology at King Abdulaziz University.",
-          visionTitle: "Our Vision",
-          visionText:
-            "To create an empowering space for data science through hands-on practice rather than theory alone, fostering shared learning through real-world projects and practical challenges.",
+          desc: "The Data Science Club is a student community in the Faculty of Computing and Information Technology. It aims to be the leading source of inspiration and innovation in the field of data science, bringing together ambitious students in a cohesive environment that seeks to transform data into added value that contributes to achieving Saudi Vision 2030.",
           missionTitle: "Our Mission",
           missionText:
-            "To cultivate a generation of students capable of working confidently with data and transforming it into actionable decisions and deployable models using the right tools.",
+            "To empower students to discover the power of data and make use of it by providing them with the necessary tools and skills through workshops, advanced training, and expert sessions. This helps them build innovative solutions that drive progress across different sectors.",
+          visionTitle: "Our Vision",
+          visionText:
+            "To be a leading student community that inspires creativity and enables students to develop their skills, so they contribute to shaping a generation of future leaders in the field of data science.",
         },
+
         footerSection: {
           copyright: "© 2025 All rights reserved | Tech Department Team",
         },
@@ -66,6 +67,60 @@ i18n.use(initReactI18next).init({
       desc: "Reflects the structure of the logo and letter arrangement, while the color gradient represents neural networks and data flow."
     }
   }
+},
+events: {
+  title: "Activities",
+  subtitle: "Explore our upcoming events and take a look at our previous activities.",
+  tabs: {
+    upcoming: "Upcoming",
+    previous: "Previous",
+  },
+  meta: {
+    date: "Date",
+    time: "Time",
+    location: "Location",
+    info: "Info",
+  },
+  actions: {
+    register: "Register",
+    registerHint: "Opens a Google Form in a new tab.",
+  },
+  upcoming: {
+    items: {
+      event1: {
+        title: "Workshop: Intro to Data Science",
+        desc: "A beginner-friendly session covering the basics and tools you’ll use to start your data science journey.",
+        date: "Feb 20, 2026",
+        time: "6:00 PM – 8:00 PM",
+        location: "FCIT – Room 101",
+        extra: "Limited seats. Bring your laptop.",
+      },
+      event2: {
+        title: "Talk: Machine Learning in Practice",
+        desc: "A practical talk about real-world ML projects, pitfalls, and how to build a strong portfolio.",
+        date: "Mar 5, 2026",
+        time: "7:00 PM – 8:30 PM",
+        location: "FCIT – Main Hall",
+        extra: "Open to all students.",
+      },
+    },
+  },
+  previous: {
+    items: {
+      prev1: {
+        title: "DSC Orientation Day",
+        desc: "An introduction to the club, our sections, and how to get involved.",
+      },
+      prev2: {
+        title: "Python for Data Analysis",
+        desc: "Hands-on workshop covering data cleaning and basic analysis workflows.",
+      },
+      prev3: {
+        title: "AI Career Panel",
+        desc: "A panel with guests discussing AI careers, internships, and growth paths.",
+      },
+    },
+  },
 },
 
 
@@ -106,16 +161,17 @@ i18n.use(initReactI18next).init({
           mediaDescription:"يعمل قسم التسويق والإعلام على إبراز هوية النادي والتعريف بأنشطته عبر المحتوى الإعلامي والتسويق الرقمي الفعّال والمبتكر.",
         },
 
-        about:{
-          title: "من نحن:",
-          desc: "نادي علم البيانات هو مجتمع طلابي بكلية الحاسبات وتقنية المعلومات بجامعة الملك عبدالعزيز.",
-          visionTitle: "رؤيتنا:",
-          visionText:
-            "إقامة مساحة معززة لعلم البيانات بالممارسة، لا بالاكتفاء النظري، وبناء الخبرات معًا عبر مشاريع حقيقية وتحديات عملية.",
-          missionTitle: "رسالتنا:",
-          missionText:
-            "صناعة جيل طلابي متمكن من التعامل مع البيانات وتحويلها إلى قرارات ونماذج تنفيذية بالأدوات المناسبة.",
-        },
+     about: {
+  title: "من نحن؟",
+  desc: "نادي علم البيانات هو مجتمع طلابي في كلية الحاسبات وتقنية المعلومات يسعى ليكون المصدر الأول للإلهام والابتكار في مجال علم البيانات، حيث يجمع الطلاب الطموحين في بيئة متماسكة تهدف إلى تحويل البيانات إلى قيمة مضافة تسهم في تحقيق رؤية المملكة 2030.",
+  missionTitle: "رسالتنا",
+  missionText:
+    "تمكين الطلاب من اكتشاف قوة البيانات واستثمارها، من خلال تزويدهم بالأدوات والمهارات اللازمة عبر ورش عمل تفاعلية، دورات تدريبية متقدمة، ولقاءات مثرية مع خبراء المجال، مما يساعدهم على بناء حلول إبداعية تدفع عجلة التقدم في مختلف القطاعات.",
+  visionTitle: "رؤيتنا",
+  visionText:
+    "أن نكون مجتمعًا طلابيًا رائدًا يحفز الإبداع، ويمكن الطلاب من تطوير مهاراتهم، ليساهموا في تشكيل جيل من قادة المستقبل في مجال علم البيانات.",
+},
+
         footerSection: {
           copyright: "© 2025 جميع الحقوق محفوظة | فريق قسم التقنية",
         },
@@ -135,6 +191,62 @@ i18n.use(initReactI18next).init({
     }
   }
 },
+
+events: {
+  title: "الفعاليات",
+  subtitle: "تعرّف على فعالياتنا القادمة واطّلع على أنشطتنا السابقة.",
+  tabs: {
+    upcoming: "القادمة",
+    previous: "السابقة",
+  },
+  meta: {
+    date: "التاريخ",
+    time: "الوقت",
+    location: "المكان",
+    info: "معلومات",
+  },
+  actions: {
+    register: "التسجيل",
+    registerHint: "سيتم فتح نموذج Google في تبويب جديد.",
+  },
+  upcoming: {
+    items: {
+      event1: {
+        title: "ورشة: مقدمة في علم البيانات",
+        desc: "جلسة مناسبة للمبتدئين تغطي الأساسيات والأدوات التي تساعدك لبدء رحلتك في علم البيانات.",
+        date: "20 فبراير 2026",
+        time: "6:00 م – 8:00 م",
+        location: "كلية الحاسبات – قاعة 101",
+        extra: "المقاعد محدودة. احضر جهازك المحمول.",
+      },
+      event2: {
+        title: "محاضرة: تعلم الآلة في الواقع العملي",
+        desc: "محاضرة عملية حول مشاريع تعلم الآلة الواقعية والتحديات وكيف تبني ملفًا قويًا.",
+        date: "5 مارس 2026",
+        time: "7:00 م – 8:30 م",
+        location: "كلية الحاسبات – القاعة الرئيسية",
+        extra: "متاحة لجميع الطلاب.",
+      },
+    },
+  },
+  previous: {
+    items: {
+      prev1: {
+        title: "يوم التعريف بالنادي",
+        desc: "تعريف بالنادي وأقسامه وكيفية الانضمام والمشاركة.",
+      },
+      prev2: {
+        title: "بايثون لتحليل البيانات",
+        desc: "ورشة تطبيقية حول تنظيف البيانات وأساسيات التحليل.",
+      },
+      prev3: {
+        title: "جلسة حوارية عن مسارات الذكاء الاصطناعي",
+        desc: "نقاش مع ضيوف حول المسارات المهنية والتدريب وبناء الخبرة.",
+      },
+    },
+  },
+},
+
 
         
            xPosts: {

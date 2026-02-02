@@ -37,35 +37,47 @@ export default function AboutSection() {
               {t("about.title")}
             </h2>
 
-            {/* Description */}
-            <p className="text-[#0C3A60]/90 leading-7 sm:leading-8 mb-10 sm:mb-14 max-w-xl
-                          text-sm sm:text-base lg:text-lg">
-              {t("about.desc")}
-            </p>
+        {/* Description */}
+<p
+  className={`text-[#0C3A60]/90 leading-7 sm:leading-8 mb-10 sm:mb-14
+              max-w-[62ch] text-sm sm:text-base lg:text-lg
+              ${isArabic ? "" : "text-justify"}`}
+>
+  {t("about.desc")}
+</p>
 
-            <div className="grid grid-cols-2 gap-8 lg:gap-10">
-              {/* Vision */}
-              <div>
-                <h3 className="text-[#35C6A8] font-bold mb-3 sm:mb-4
-                               text-xl sm:text-2xl lg:text-2xl">
-                  {t("about.visionTitle")}
-                </h3>
-                <p className="text-[#0C3A60]/90 leading-7 sm:leading-8
-                              text-sm sm:text-base lg:text-base">
-                  {t("about.visionText")}
-                </p>
-              </div>
+<div className="grid grid-cols-1 sm:grid-cols-2 gap-10 lg:gap-12 items-start">
 
-              {/* Mission */}
-              <div>
-                <h3 className="text-[#35C6A8] font-bold mb-3 sm:mb-4
-                               text-xl sm:text-2xl lg:text-2xl">
-                  {t("about.missionTitle")}
-                </h3>
-                <p className="text-[#0C3A60]/90 leading-7 sm:leading-8
-                              text-sm sm:text-base lg:text-base">
-                  {t("about.missionText")}
-                </p>
+  {/* Mission (swapped to come first) */}
+  <div>
+    <h3
+      className="text-[#35C6A8] font-bold mb-3 sm:mb-4
+                 text-xl sm:text-2xl lg:text-2xl"
+    >
+      {t("about.missionTitle")}
+    </h3>
+    <p
+      className="text-[#0C3A60]/90 leading-7 sm:leading-8
+                 text-sm sm:text-base lg:text-base max-w-[38ch]"
+    >
+      {t("about.missionText")}
+    </p>
+  </div>
+
+  {/* Vision */}
+  <div>
+    <h3
+      className="text-[#35C6A8] font-bold mb-3 sm:mb-4
+                 text-xl sm:text-2xl lg:text-2xl"
+    >
+      {t("about.visionTitle")}
+    </h3>
+    <p
+      className="text-[#0C3A60]/90 leading-7 sm:leading-8
+                 text-sm sm:text-base lg:text-base max-w-[38ch]"
+    >
+      {t("about.visionText")}
+    </p>
               </div>
             </div>
 
