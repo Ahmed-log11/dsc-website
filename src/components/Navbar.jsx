@@ -72,16 +72,17 @@ export default function Navbar() {
       onClick={() => setOpen(false)}
       className="block text-white hover:text-orange-400 transition-colors duration-200"
     >
-      <a
+      
+
+      {t("navbar.home")}
+    </a>
+    <a
   href="#about"
   onClick={() => setOpen(false)}
   className="block text-white hover:text-orange-400 transition-colors duration-200"
 >
   {t("navbar.about")}
 </a>
-
-      {t("navbar.home")}
-    </a>
 
     <a
       href="#sections"

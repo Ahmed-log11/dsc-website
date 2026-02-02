@@ -10,7 +10,7 @@ export default function EventsSection() {
 
   const [tab, setTab] = useState("upcoming"); // "upcoming" | "previous"
 
-  // ✅ Keep previous events active (you still use it)
+  // Keep previous events active (you still use it)
   const previousEvents = useMemo(
   () => [
     {
