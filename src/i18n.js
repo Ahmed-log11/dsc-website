@@ -51,6 +51,24 @@ i18n.use(initReactI18next).init({
           mediaDescription :"Highlights the club’s identity and showcases its activities through effective and innovative media content and digital marketing.",
 
         },
+  logo: {
+  meanings: {
+    blue: {
+      title: "Faculty Identity",
+      desc: "Indicates affiliation with the academic institution."
+    },
+    orange: {
+      title: "Data",
+      desc: "Represents data as the foundation of data science."
+    },
+    green: {
+      title: "Neural Networks",
+      desc: "Reflects the structure of the logo and letter arrangement, while the color gradient represents neural networks and data flow."
+    }
+  }
+},
+
+
         xPosts: {
   title: "Latest on X",
   viewPost: "View post",
@@ -101,10 +119,29 @@ i18n.use(initReactI18next).init({
         footerSection: {
           copyright: "© 2025 جميع الحقوق محفوظة | فريق قسم التقنية",
         },
+        logo: {
+  meanings: {
+    blue: {
+      title: "شعار الكلية",
+      desc: "دلالة على الانتماء للصرح الأكاديمي"
+    },
+    orange: {
+      title: "البيانات",
+      desc: "اشارة الى أساس علم البيانات."
+    },
+    green: {
+      title: "الشبكات العصبية",
+      desc: "تعكس بنية الشعار وترتيب الأحرف, وتدرج الألوان مفهوم الشبكات العصبية واتجاه تدفق البيانات فيها."
+    }
+  }
+},
+
+        
            xPosts: {
   title: "آخر ما نُشر على X",
   viewPost: "عرض المنشور",
 }
+
       },
    
 
