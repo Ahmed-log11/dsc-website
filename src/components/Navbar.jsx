@@ -30,9 +30,7 @@ export default function Navbar() {
 
         {/* Desktop links */}
         <div className="hidden md:flex items-center gap-8 text-sm">
-          <a href="#home" className="text-white hover:text-orange-400">
-            {t("navbar.home")}
-          </a>
+       
            <a href="#about" className="text-white hover:text-orange-400">
     {t("navbar.about")}
   </a>
@@ -67,15 +65,8 @@ export default function Navbar() {
     dir={isArabic ? "rtl" : "ltr"}
     className="md:hidden bg-slate-900/95 backdrop-blur text-white px-6 py-6 space-y-4"
   >
-    <a
-      href="#home"
-      onClick={() => setOpen(false)}
-      className="block text-white hover:text-orange-400 transition-colors duration-200"
-    >
-      
+=
 
-      {t("navbar.home")}
-    </a>
     <a
   href="#about"
   onClick={() => setOpen(false)}
