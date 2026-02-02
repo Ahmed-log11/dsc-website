@@ -2,17 +2,12 @@ import { useTranslation } from "react-i18next";
 import { useEffect, useMemo, useRef, useState } from "react";
 import logoSvg from "../assets/logo-primary.svg?raw";
 
-export default function LogoInteractive({ onHover, onLeave, onLogoClick }) {
-  const { t, i18n } = useTranslation();
-  const isArabic = i18n.language?.startsWith("ar");
-
+export default function LogoInteractive({ onHover, onLeave }) {
+  const { t } = useTranslation();
   const rootRef = useRef(null);
 
-  // hoverMode (desktop) + activeMode (mobile tap toggle)
   const [hoverMode, setHoverMode] = useState(null);
   const [activeMode, setActiveMode] = useState(null);
-
-  // anchor in SCREEN coords (viewport px)
   const [anchor, setAnchor] = useState(null);
 
   const mode = useMemo(() => activeMode ?? hoverMode, [activeMode, hoverMode]);
@@ -31,7 +26,6 @@ export default function LogoInteractive({ onHover, onLeave, onLogoClick }) {
     return e.target?.closest?.("[data-mode]") || null;
   };
 
-  // Return screen coordinates for the center of the hovered/tapped shape
   const computeScreenAnchor = (modeEl) => {
     const root = rootRef.current;
     if (!root || !modeEl) return null;
@@ -57,7 +51,7 @@ export default function LogoInteractive({ onHover, onLeave, onLogoClick }) {
     if (!ctm) return null;
 
     const screen = pt.matrixTransform(ctm);
-    return { x: screen.x, y: screen.y }; // viewport coords
+    return { x: screen.x, y: screen.y };
   };
 
   const clearHover = () => {
@@ -66,7 +60,7 @@ export default function LogoInteractive({ onHover, onLeave, onLogoClick }) {
     onLeave?.();
   };
 
-  // Desktop hover 
+  // Desktop hover + fix sticky
   const handleMouseMove = (e) => {
     const el = findModeEl(e);
 
@@ -87,20 +81,14 @@ export default function LogoInteractive({ onHover, onLeave, onLogoClick }) {
     if (a) setAnchor(a);
   };
 
-  const handleMouseLeave = () => {
-    setHoverMode(null);
-    if (!activeMode) setAnchor(null);
-    onLeave?.();
-  };
+  const handleMouseLeave = () => clearHover();
 
-  // Mobile tap toggle
+  // Mobile tap toggle (ONLY shapes)
   const handleTouchStart = (e) => {
     const el = findModeEl(e);
 
-    if (!el) {
-      onLogoClick?.();
-      return;
-    }
+    // tap outside shapes -> do nothing 
+    if (!el) return;
 
     e.preventDefault();
     e.stopPropagation();
@@ -115,18 +103,17 @@ export default function LogoInteractive({ onHover, onLeave, onLogoClick }) {
     if (a) setAnchor(a);
   };
 
-  // When activeMode becomes null, hide tooltip
+  // Close card when tapping anywhere else on the page (mobile)
   useEffect(() => {
-    if (!activeMode) {
-      // if not hovering either, clear
-      if (!hoverMode) setAnchor(null);
-    }
-  }, [activeMode, hoverMode]);
+    if (!activeMode) return;
+    const close = () => setActiveMode(null);
+    window.addEventListener("touchstart", close, { passive: true });
+    return () => window.removeEventListener("touchstart", close);
+  }, [activeMode]);
 
-  // Recompute anchor on resize/scroll so it stays attached
+  // Recompute on resize/scroll
   useEffect(() => {
     if (!mode) return;
-
     const root = rootRef.current;
     if (!root) return;
 
@@ -147,106 +134,118 @@ export default function LogoInteractive({ onHover, onLeave, onLogoClick }) {
     };
   }, [mode]);
 
-  // Tooltip placement (ALWAYS outside the logo area, fixed on screen)
+  // Detect mobile 
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+
+  // Desktop tooltip placement
   const tooltip = useMemo(() => {
-    if (!anchor) return null;
+    if (!anchor || isMobile) return null;
 
     const w = 280;
     const h = 90;
-
     const vw = window.innerWidth;
     const vh = window.innerHeight;
-
-    const dirRight = !isArabic;
 
     const offsetX = 70; // push out
     const offsetY = 90;
 
-    let left = anchor.x + (dirRight ? offsetX : -offsetX - w);
+    let left = anchor.x + offsetX;
     let top = anchor.y + offsetY;
 
-    // clamp to viewport
     left = Math.max(10, Math.min(left, vw - w - 10));
     top = Math.max(10, Math.min(top, vh - h - 10));
 
-    // line end point near box edge
-    const x2 = dirRight ? left - 12 : left + w + 12;
+    const x2 = left - 12;
     const y2 = top + 22;
 
-    return { left, top, w, h, x2, y2, dirRight };
-  }, [anchor, isArabic]);
+    return { left, top, w, h, x2, y2 };
+  }, [anchor, isMobile]);
 
-  const showOverlay = mode && info && anchor && tooltip;
+  const showDesktopOverlay = !isMobile && mode && info && anchor && tooltip;
 
   return (
-    <div className="relative w-full h-auto select-none">
-      <style>{`
-        @keyframes dscIn {
-          to { transform: translateY(0); opacity: 1; }
-        }
-      `}</style>
+    <div className="w-full">
+      <div className="relative w-full h-auto select-none">
+        <style>{`
+          @keyframes dscIn {
+            to { transform: translateY(0); opacity: 1; }
+          }
+        `}</style>
 
-      <div
-        ref={rootRef}
-        className="w-full h-auto [&_svg]:w-full [&_svg]:h-auto"
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-        onTouchStart={handleTouchStart}
-        dangerouslySetInnerHTML={{ __html: logoSvg }}
-      />
+        <div
+          ref={rootRef}
+          className="w-full h-auto [&_svg]:w-full [&_svg]:h-auto"
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
+          onTouchStart={handleTouchStart}
+          dangerouslySetInnerHTML={{ __html: logoSvg }}
+        />
 
-      {/* FIXED OVERLAY so it "pops out" and never affects layout */}
-      {showOverlay && (
-        <>
-          {/* leader line */}
-          <svg
-            className="pointer-events-none fixed inset-0"
-            width="100%"
-            height="100%"
-          >
-            <line
-              x1={anchor.x}
-              y1={anchor.y}
-              x2={tooltip.x2}
-              y2={tooltip.y2}
-              stroke="color-mix(in srgb, var(--accent) 85%, white)"
-              strokeWidth="3.2"
-              strokeLinecap="round"
-            />
-            <circle
-              cx={anchor.x}
-              cy={anchor.y}
-              r="4.4"
-              fill="color-mix(in srgb, var(--accent) 80%, white)"
-            />
-          </svg>
+        {/* Desktop: leader line + floating label */}
+        {showDesktopOverlay && (
+          <>
+            <svg className="pointer-events-none fixed inset-0" width="100%" height="100%">
+              <line
+                x1={anchor.x}
+                y1={anchor.y}
+                x2={tooltip.x2}
+                y2={tooltip.y2}
+                stroke="color-mix(in srgb, var(--accent) 85%, white)"
+                strokeWidth="3.2"
+                strokeLinecap="round"
+              />
+              <circle
+                cx={anchor.x}
+                cy={anchor.y}
+                r="4.4"
+                fill="color-mix(in srgb, var(--accent) 80%, white)"
+              />
+            </svg>
 
-          {/* tooltip box */}
-          <div
-            className="pointer-events-none fixed rounded-2xl bg-black/70 px-4 py-3 backdrop-blur-md
-                       translate-y-1 opacity-0"
-            style={{
-              left: `${tooltip.left}px`,
-              top: `${tooltip.top}px`,
-              width: `${tooltip.w}px`,
-              border:
-                "1px solid color-mix(in srgb, var(--accent) 55%, transparent)",
-              boxShadow:
-                "0 12px 34px rgba(0,0,0,0.35), 0 0 0 1px color-mix(in srgb, var(--accent) 22%, transparent)",
-              animation: "dscIn .18s ease forwards",
-            }}
-          >
             <div
-              className="text-sm font-semibold"
-              style={{ color: "color-mix(in srgb, var(--accent) 90%, white)" }}
+              className="pointer-events-none fixed rounded-2xl bg-black/70 px-4 py-3 backdrop-blur-md
+                         translate-y-1 opacity-0"
+              style={{
+                left: `${tooltip.left}px`,
+                top: `${tooltip.top}px`,
+                width: `${tooltip.w}px`,
+                border: "1px solid color-mix(in srgb, var(--accent) 55%, transparent)",
+                boxShadow:
+                  "0 12px 34px rgba(0,0,0,0.35), 0 0 0 1px color-mix(in srgb, var(--accent) 22%, transparent)",
+                animation: "dscIn .18s ease forwards",
+              }}
             >
-              {info.title}
+              <div
+                className="text-sm font-semibold"
+                style={{ color: "color-mix(in srgb, var(--accent) 90%, white)" }}
+              >
+                {info.title}
+              </div>
+              <div className="mt-1 text-xs leading-relaxed text-white/80">{info.desc}</div>
             </div>
-            <div className="mt-1 text-xs leading-relaxed text-white/80">
-              {info.desc}
-            </div>
+          </>
+        )}
+      </div>
+
+      {/* Mobile: clean card UNDER the logo */}
+      {isMobile && mode && info && (
+        <div
+          className="mt-4 rounded-2xl bg-black/60 px-4 py-3 backdrop-blur-md"
+          style={{
+            border: "1px solid color-mix(in srgb, var(--accent) 55%, transparent)",
+            boxShadow:
+              "0 12px 34px rgba(0,0,0,0.25), 0 0 0 1px color-mix(in srgb, var(--accent) 18%, transparent)",
+          }}
+        >
+          <div
+            className="text-sm font-semibold"
+            style={{ color: "color-mix(in srgb, var(--accent) 90%, white)" }}
+          >
+            {info.title}
           </div>
-        </>
+          <div className="mt-1 text-xs leading-relaxed text-white/80">{info.desc}</div>
+          <div className="mt-2 text-[11px] text-white/50">Tap a shape again to close.</div>
+        </div>
       )}
     </div>
   );

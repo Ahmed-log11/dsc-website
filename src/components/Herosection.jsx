@@ -91,11 +91,11 @@ export default function Herosection() {
           {/* Logo */}
 <div className="w-[200px] md:w-[300px] relative">
 
-  <LogoInteractive
-    onHover={setAccentMode}
-    onLeave={() => setAccentMode("orange")}
-    onLogoClick={toggleLang}
-  />
+ <LogoInteractive
+  onHover={setAccentMode}
+  onLeave={() => setAccentMode("orange")}
+/>
+
 </div>
 
 
