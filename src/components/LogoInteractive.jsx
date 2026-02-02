@@ -59,22 +59,7 @@ export default function LogoInteractive({ onHover, onLeave }) {
     if (!activeMode) setAnchor(null);
     onLeave?.();
   };
-useEffect(() => {
-  const close = () => {
-    setHoverMode(null);
-    setActiveMode(null);
-    setAnchor(null);
-    onLeave?.();
-  };
 
-  window.addEventListener("mousedown", close);
-  window.addEventListener("touchstart", close, { passive: true });
-
-  return () => {
-    window.removeEventListener("mousedown", close);
-    window.removeEventListener("touchstart", close);
-  };
-}, [onLeave]);
 useEffect(() => {
   let ticking = false;
 
