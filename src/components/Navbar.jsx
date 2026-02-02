@@ -33,6 +33,9 @@ export default function Navbar() {
           <a href="#home" className="text-white hover:text-orange-400">
             {t("navbar.home")}
           </a>
+           <a href="#about" className="text-white hover:text-orange-400">
+    {t("navbar.about")}
+  </a>
           <a href="#sections" className="text-white hover:text-orange-400">
             {t("navbar.sections")}
           </a>
@@ -69,6 +72,14 @@ export default function Navbar() {
       onClick={() => setOpen(false)}
       className="block text-white hover:text-orange-400 transition-colors duration-200"
     >
+      <a
+  href="#about"
+  onClick={() => setOpen(false)}
+  className="block text-white hover:text-orange-400 transition-colors duration-200"
+>
+  {t("navbar.about")}
+</a>
+
       {t("navbar.home")}
     </a>
 

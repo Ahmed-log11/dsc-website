@@ -8,6 +8,7 @@ export default function Footer() {
 
   return (
     <footer
+    id="contact"
       className="relative overflow-hidden"
       dir={isArabic ? "rtl" : "ltr"}
     >

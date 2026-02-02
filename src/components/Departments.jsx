@@ -8,8 +8,10 @@ export default function Departments() {
   const isArabic = i18n.language === "ar";
 
   return (
-    <section className="py-16 bg-white" dir={isArabic ? "rtl" : "ltr"}>
+    <section
+    id="sections" className="py-16 bg-white" dir={isArabic ? "rtl" : "ltr"}>
       {/* Title */}
+     
       <h2 className="text-center text-2xl md:text-3xl font-bold text-[#FF7043] mb-12">
         {t("departments.title")}
       </h2>

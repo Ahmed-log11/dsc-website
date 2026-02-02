@@ -17,11 +17,13 @@ i18n.use(initReactI18next).init({
         navbar: {
           home: "Home",
           sections: "Sections",
-          events: "Events",
+          events: "Activities",
           contact: "Contact",
           clubName: "Data Science Club",
           facultyName: "Faculty of Computing & IT",
           langButton: "🇸🇦 Arabic",
+          about: "About",
+
         },
         hero: {
           title: "Welcome to the official website of the Data Science Club",
@@ -69,6 +71,10 @@ i18n.use(initReactI18next).init({
   }
 },
 events: {
+  stayTunedTitle: "Stay Tuned!",
+stayTunedDesc:
+  "We are preparing upcoming activities and workshops. Events will be announced soon on X.",
+
   title: "Activities",
   subtitle: "Explore our upcoming events and take a look at our previous activities.",
   tabs: {
@@ -107,18 +113,19 @@ events: {
   },
   previous: {
     items: {
-      prev1: {
+     prev1: {
         title: "DSC Orientation Day",
         desc: "An introduction to the club, our sections, and how to get involved.",
       },
       prev2: {
-        title: "Python for Data Analysis",
-        desc: "Hands-on workshop covering data cleaning and basic analysis workflows.",
+        title: "Robocon Booth",
+        desc: "We hosted a booth at Robocon to showcase the club’s work and connect with students.",
       },
       prev3: {
-        title: "AI Career Panel",
-        desc: "A panel with guests discussing AI careers, internships, and growth paths.",
+        title: "Exploratory Data Analysis Workshop",
+        desc: "A hands-on workshop on EDA concepts and techniques using real datasets.",
       },
+
     },
   },
 },
@@ -145,6 +152,8 @@ events: {
           clubName: "نادي علم البيانات",
           facultyName: "كلية الحاسبات وتقنية المعلومات",
           langButton: "🇺🇸 English",
+          about: "من نحن",
+
         },
         hero: {
           title: "مرحباً بكم في الموقع الرسمي لنادي علم البيانات",
@@ -193,6 +202,10 @@ events: {
 },
 
 events: {
+  stayTunedTitle: "ترقبوا !",
+stayTunedDesc:
+  "نعمل على تجهيز فعاليات وورش عمل قادمة، وسيتم الإعلان عنها قريبًا على منصة X.",
+
   title: "الفعاليات",
   subtitle: "تعرّف على فعالياتنا القادمة واطّلع على أنشطتنا السابقة.",
   tabs: {
@@ -236,13 +249,14 @@ events: {
         desc: "تعريف بالنادي وأقسامه وكيفية الانضمام والمشاركة.",
       },
       prev2: {
-        title: "بايثون لتحليل البيانات",
-        desc: "ورشة تطبيقية حول تنظيف البيانات وأساسيات التحليل.",
+        title: "النادي في روبوكون",
+        desc: "شاركنا بركن في فعالية روبوكون لعرض أعمال النادي والتواصل مع الطلاب.",
       },
       prev3: {
-        title: "جلسة حوارية عن مسارات الذكاء الاصطناعي",
-        desc: "نقاش مع ضيوف حول المسارات المهنية والتدريب وبناء الخبرة.",
+        title: "ورشة تحليل البيانات الاستكشافي",
+        desc: "ورشة تطبيقية حول مفاهيم وتقنيات تحليل البيانات الاستكشافي باستخدام بيانات واقعية.",
       },
+
     },
   },
 },
