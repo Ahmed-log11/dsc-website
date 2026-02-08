@@ -265,7 +265,7 @@ useEffect(() => {
             {info.title}
           </div>
           <div className="mt-1 text-xs leading-relaxed text-white/80">{info.desc}</div>
-          <div className="mt-2 text-[11px] text-white/50">Tap a shape again to close.</div>
+          
         </div>
       )}
       
