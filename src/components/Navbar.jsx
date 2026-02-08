@@ -2,7 +2,7 @@
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import LanguageSwitcher from "../LanguageSwitcher";
-import logo from "../assets/Logo.png";
+import logo from "../assets/logo.png";
 
 export default function Navbar() {
   const { t, i18n } = useTranslation();
