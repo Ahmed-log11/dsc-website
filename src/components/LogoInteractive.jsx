@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { useEffect, useMemo, useRef, useState } from "react";
-import logoSvg from "../assets/logo-primary.svg?raw";
+import logoSvg from "../assets/logo-Primary.svg?raw";
 
 export default function LogoInteractive({ onHover, onLeave }) {
   const { t } = useTranslation();
