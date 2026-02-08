@@ -3,13 +3,16 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview",
-    "predeploy": "npm run build",
+    "build:gh": "vite build --mode gh",
+    "predeploy": "npm run build:gh",
     "deploy": "gh-pages -d dist"
-  },
+  }
+
+,
   "dependencies": {
     "i18next": "^25.6.3",
     "react": "^19.2.0",
