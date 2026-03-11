@@ -4,11 +4,11 @@ import { FaXTwitter } from "react-icons/fa6";
 
 export default function Footer() {
   const { t, i18n } = useTranslation();
-  const isArabic = i18n.language === "ar";
+  const isArabic = i18n.language?.startsWith("ar");
 
   return (
     <footer
-    id="contact"
+      id="contact"
       className="relative overflow-hidden"
       dir={isArabic ? "rtl" : "ltr"}
     >
@@ -21,7 +21,7 @@ export default function Footer() {
         >
           <path
             d="M0,40 C240,120 480,120 720,80 960,40 1200,40 1440,80 L1440,0 L0,0 Z"
-            fill="white"
+            fill="#F8FAFC" /* Changed from "white" to match the XPosts bg-slate-50 */
           />
         </svg>
       </div>
@@ -71,7 +71,7 @@ export default function Footer() {
         </div>
 
         {/* Copyright */}
-        <p className="text-[11px] sm:text-xs opacity-90 text-center leading-tight">
+        <p className="text-[11px] sm:text-xs opacity-90 text-center leading-tight font-sans">
           {t("footerSection.copyright")}
         </p>
       </div>

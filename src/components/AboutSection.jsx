@@ -3,85 +3,61 @@ import abstractLogo from "../assets/abstract_logo.png";
 
 export default function AboutSection() {
   const { t, i18n } = useTranslation();
-  const isArabic = i18n.language === "ar";
+  const isArabic = i18n.language?.startsWith("ar");
 
   return (
-    <section id="about" className="bg-white py-12 sm:py-16 lg:py-20">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+    // 1. We apply the direction to the ENTIRE section here
+    <section 
+      id="about" 
+      className="relative bg-white py-20 lg:py-28"
+      dir={isArabic ? "rtl" : "ltr"}
+    >
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
-          {/* Abstract logo */}
-          <div
-            className={`hidden min-[770px]:flex justify-center ${
-              isArabic
-                ? "md:order-1 lg:justify-start"
-                : "md:order-2 lg:justify-end"
-            }`}
-          >
-            <img
-              src={abstractLogo}
-              alt="Abstract Logo DSC"
-              aria-hidden="true"
-              className="w-[380px] lg:w-[420px] opacity-90"
-            />
-          </div>
-
-          {/* Content */}
-          <div
-            dir={isArabic ? "rtl" : "ltr"}
-            className={`${isArabic ? "text-right md:order-2" : "text-left md:order-1"}`}
-          >
-            {/* Title */}
-            <h2 className="text-[#35C6A8] font-bold mb-4 sm:mb-6
-                           text-2xl sm:text-3xl lg:text-3xl">
+          {/* 2. Content Side is now FIRST in the code */}
+          <div>
+            <h2 className="text-[#35C6A8] font-bold tracking-tight text-3xl md:text-4xl mb-6 font-sans">
               {t("about.title")}
             </h2>
 
-        {/* Description */}
-<p
-  className={`text-[#0C3A60]/90 leading-7 sm:leading-8 mb-10 sm:mb-14
-              max-w-[62ch] text-sm sm:text-base lg:text-lg
-              ${isArabic ? "" : "text-justify"}`}
->
-  {t("about.desc")}
-</p>
+            <p className="text-[#0C3A60]/80 leading-relaxed text-lg mb-12 max-w-[55ch] font-sans">
+              {t("about.desc")}
+            </p>
 
-<div className="grid grid-cols-1 sm:grid-cols-2 gap-10 lg:gap-12 items-start">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 lg:gap-12">
+              <div className="flex flex-col">
+                <h3 className="text-[#0C3A60] font-bold text-xl mb-3 font-sans">
+                  {t("about.missionTitle")}
+                </h3>
+                <p className="text-slate-500 text-sm leading-relaxed font-sans">
+                  {t("about.missionText")}
+                </p>
+              </div>
 
-  {/* Mission (swapped to come first) */}
-  <div>
-    <h3
-      className="text-[#35C6A8] font-bold mb-3 sm:mb-4
-                 text-xl sm:text-2xl lg:text-2xl"
-    >
-      {t("about.missionTitle")}
-    </h3>
-    <p
-      className="text-[#0C3A60]/90 leading-7 sm:leading-8
-                 text-sm sm:text-base lg:text-base max-w-[38ch]"
-    >
-      {t("about.missionText")}
-    </p>
-  </div>
-
-  {/* Vision */}
-  <div>
-    <h3
-      className="text-[#35C6A8] font-bold mb-3 sm:mb-4
-                 text-xl sm:text-2xl lg:text-2xl"
-    >
-      {t("about.visionTitle")}
-    </h3>
-    <p
-      className="text-[#0C3A60]/90 leading-7 sm:leading-8
-                 text-sm sm:text-base lg:text-base max-w-[38ch]"
-    >
-      {t("about.visionText")}
-    </p>
+              <div className="flex flex-col">
+                <h3 className="text-[#0C3A60] font-bold text-xl mb-3 font-sans">
+                  {t("about.visionTitle")}
+                </h3>
+                <p className="text-slate-500 text-sm leading-relaxed font-sans">
+                  {t("about.visionText")}
+                </p>
               </div>
             </div>
-
           </div>
+
+          {/* 3. Image Side is now SECOND in the code */}
+          <div className="flex justify-center">
+            <div className="relative">
+              <div className="absolute inset-0 bg-[#35C6A8]/5 blur-3xl rounded-full" />
+              <img
+                src={abstractLogo}
+                alt="Abstract Logo DSC"
+                className="relative z-10 w-[350px] lg:w-[450px] mix-blend-multiply"
+              />
+            </div>
+          </div>
+
         </div>
       </div>
     </section>

@@ -50,20 +50,31 @@ export default function XPosts() {
   }, [isArabic]);
 
   return (
-    <section className="py-16 bg-white" dir={isArabic ? "rtl" : "ltr"}>
-      <div className="max-w-6xl mx-auto px-4">
-        <h2 className="text-center text-2xl md:text-3xl font-bold text-[#FF7043] mb-12">
-          {t("xPosts.title")}
-        </h2>
+    // 1. Zebra Striping: Section is now bg-slate-50 to contrast with Events
+    <section className="py-20 lg:py-28 bg-slate-50 relative" dir={isArabic ? "rtl" : "ltr"}>
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        
+   
+        <div className="mb-12 sm:mb-16 text-center">
+          <h2 className="text-[#FF7043] font-extrabold text-3xl md:text-4xl font-sans tracking-tight">
+            {t("xPosts.title")}
+          </h2>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Twitter Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {tweetIds.map((id) => (
+            // 2. Upgraded Wrapper Card: Matches the Departments and Events hover physics!
             <div
               key={id}
-             className="bg-white shadow-md rounded-xl px-4 pt-2 pb-0 hover:shadow-lg transition-shadow"
-
+              className="bg-white rounded-[2rem] p-4 sm:p-5 shadow-sm border border-slate-100 hover:-translate-y-2 hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-300 flex flex-col justify-center overflow-hidden"
             >
-              <blockquote className="twitter-tweet" data-dnt="true">
+              {/* 3. Added data-theme to ensure the tweet matches your light theme */}
+              <blockquote 
+                className="twitter-tweet w-full mx-auto" 
+                data-dnt="true"
+                data-theme="light"
+              >
                 <a href={`https://twitter.com/DSC_KAU/status/${id}`}>
                   {t("xPosts.viewPost")}
                 </a>
@@ -71,6 +82,7 @@ export default function XPosts() {
             </div>
           ))}
         </div>
+
       </div>
     </section>
   );

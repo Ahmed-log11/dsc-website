@@ -6,19 +6,21 @@ export default function LogoInteractive({ onHover, onLeave }) {
   const { t } = useTranslation();
   const rootRef = useRef(null);
 
-  const [hoverMode, setHoverMode] = useState(null);
+  // 1. "activeMode" remembers the shape for the color
   const [activeMode, setActiveMode] = useState(null);
+  
+  // 2. "showTooltip" controls ONLY the visibility of the pop-out card
+  const [showTooltip, setShowTooltip] = useState(false);
+  
   const [anchor, setAnchor] = useState(null);
 
-  const mode = useMemo(() => activeMode ?? hoverMode, [activeMode, hoverMode]);
-
   const info = useMemo(() => {
-    if (!mode) return null;
+    if (!activeMode) return null;
     return {
-      title: t(`logo.meanings.${mode}.title`),
-      desc: t(`logo.meanings.${mode}.desc`),
+      title: t(`logo.meanings.${activeMode}.title`),
+      desc: t(`logo.meanings.${activeMode}.desc`),
     };
-  }, [mode, t]);
+  }, [activeMode, t]);
 
   const findModeEl = (e) => {
     const root = rootRef.current;
@@ -54,61 +56,42 @@ export default function LogoInteractive({ onHover, onLeave }) {
     return { x: screen.x, y: screen.y };
   };
 
-  const clearHover = () => {
-    setHoverMode(null);
-    if (!activeMode) setAnchor(null);
-    onLeave?.();
-  };
-
-useEffect(() => {
-  let ticking = false;
-
-  const closeOnScroll = () => {
-    if (ticking) return;
-    ticking = true;
-
-    requestAnimationFrame(() => {
-      setHoverMode(null);
-      setActiveMode(null);
-      setAnchor(null);
-      onLeave?.();
-      ticking = false;
-    });
-  };
-
-  window.addEventListener("scroll", closeOnScroll, true);
-  return () => window.removeEventListener("scroll", closeOnScroll, true);
-}, [onLeave]);
-
-  // Desktop hover + fix sticky
+  // Desktop hover
   const handleMouseMove = (e) => {
     const el = findModeEl(e);
 
     if (!el) {
-      if (hoverMode !== null) clearHover();
+      setShowTooltip(false);
       return;
     }
 
     const m = el.getAttribute("data-mode");
     if (!m) return;
 
-    if (hoverMode !== m) {
-      setHoverMode(m);
+    if (activeMode !== m) {
+      setActiveMode(m);
       onHover?.(m);
     }
+    
+    setShowTooltip(true);
 
     const a = computeScreenAnchor(el);
     if (a) setAnchor(a);
   };
 
-  const handleMouseLeave = () => clearHover();
+  // Hide tooltip when leaving the SVG
+  const handleMouseLeave = () => {
+    setShowTooltip(false);
+  };
 
-  // Mobile tap toggle (ONLY shapes)
+  // Mobile tap
   const handleTouchStart = (e) => {
     const el = findModeEl(e);
 
-    // tap outside shapes -> do nothing 
-    if (!el) return;
+    if (!el) {
+      setShowTooltip(false);
+      return;
+    }
 
     e.preventDefault();
     e.stopPropagation();
@@ -116,48 +99,59 @@ useEffect(() => {
     const m = el.getAttribute("data-mode");
     if (!m) return;
 
-    setActiveMode((prev) => (prev === m ? null : m));
-    onHover?.(m);
+    if (activeMode === m) {
+      setShowTooltip(!showTooltip);
+    } else {
+      setActiveMode(m);
+      setShowTooltip(true);
+      onHover?.(m); 
+    }
 
     const a = computeScreenAnchor(el);
     if (a) setAnchor(a);
   };
 
-  // Close card when tapping anywhere else on the page (mobile)
+  // Close tooltip when tapping anywhere else on the page (mobile)
   useEffect(() => {
-    if (!activeMode) return;
-    const close = () => setActiveMode(null);
+    if (!showTooltip) return;
+    const close = () => setShowTooltip(false);
     window.addEventListener("touchstart", close, { passive: true });
     return () => window.removeEventListener("touchstart", close);
-  }, [activeMode]);
+  }, [showTooltip]);
 
-  // Recompute on resize/scroll
+  // Keep anchor accurate on resize, and HIDE tooltip on scroll!
   useEffect(() => {
-    if (!mode) return;
+    if (!activeMode) return;
     const root = rootRef.current;
     if (!root) return;
 
-    const modeEl = root.querySelector(`[data-mode="${mode}"]`);
+    const modeEl = root.querySelector(`[data-mode="${activeMode}"]`);
     if (!modeEl) return;
 
-    const recalc = () => {
+    const handleResize = () => {
       const a = computeScreenAnchor(modeEl);
       if (a) setAnchor(a);
     };
 
-    recalc();
-    window.addEventListener("resize", recalc);
-    window.addEventListener("scroll", recalc, true);
-    return () => {
-      window.removeEventListener("resize", recalc);
-      window.removeEventListener("scroll", recalc, true);
+    const handleScroll = () => {
+      // Instantly hide the tooltip when the user starts scrolling
+      setShowTooltip(false);
+      const a = computeScreenAnchor(modeEl);
+      if (a) setAnchor(a);
     };
-  }, [mode]);
 
-  // Detect mobile 
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [activeMode]);
+
   const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
 
-  // Desktop tooltip placement
   const tooltip = useMemo(() => {
     if (!anchor || isMobile) return null;
 
@@ -166,7 +160,7 @@ useEffect(() => {
     const vw = window.innerWidth;
     const vh = window.innerHeight;
 
-    const offsetX = 70; // push out
+    const offsetX = 70; 
     const offsetY = 90;
 
     let left = anchor.x + offsetX;
@@ -181,94 +175,101 @@ useEffect(() => {
     return { left, top, w, h, x2, y2 };
   }, [anchor, isMobile]);
 
-  const showDesktopOverlay = !isMobile && mode && info && anchor && tooltip;
+  const showDesktopOverlay = !isMobile && showTooltip && info && anchor && tooltip;
 
   return (
     <div className="w-full">
       <div className="relative w-full h-auto select-none">
         <style>{`
           @keyframes dscIn {
+            from { transform: translateY(8px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
           }
         `}</style>
 
         <div
           ref={rootRef}
-          className="w-full h-auto [&_svg]:w-full [&_svg]:h-auto"
+          className="w-full h-auto [&_svg]:w-full [&_svg]:h-auto transition-transform duration-300"
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
           onTouchStart={handleTouchStart}
           dangerouslySetInnerHTML={{ __html: logoSvg }}
         />
 
-        {/* Desktop: leader line + floating label */}
         {showDesktopOverlay && (
           <>
-            <svg className="pointer-events-none fixed inset-0" width="100%" height="100%">
+            <svg className="pointer-events-none fixed inset-0 z-50" width="100%" height="100%">
               <line
                 x1={anchor.x}
                 y1={anchor.y}
                 x2={tooltip.x2}
                 y2={tooltip.y2}
-                stroke="color-mix(in srgb, var(--accent) 85%, white)"
-                strokeWidth="3.2"
+                stroke="var(--accent)"
+                strokeWidth="4"
+                strokeLinecap="round"
+                className="opacity-30 blur-[4px]"
+              />
+              <line
+                x1={anchor.x}
+                y1={anchor.y}
+                x2={tooltip.x2}
+                y2={tooltip.y2}
+                stroke="color-mix(in srgb, var(--accent) 90%, white)"
+                strokeWidth="2.5"
                 strokeLinecap="round"
               />
               <circle
                 cx={anchor.x}
                 cy={anchor.y}
                 r="4.4"
-                fill="color-mix(in srgb, var(--accent) 80%, white)"
+                fill="color-mix(in srgb, var(--accent) 90%, white)"
+                className="shadow-lg"
               />
             </svg>
 
             <div
-              className="pointer-events-none fixed rounded-2xl bg-black/70 px-4 py-3 backdrop-blur-md
-                         translate-y-1 opacity-0"
+              className="pointer-events-none fixed z-50 rounded-2xl bg-[#0B1121]/85 px-5 py-4 backdrop-blur-xl translate-y-1 opacity-0"
               style={{
                 left: `${tooltip.left}px`,
                 top: `${tooltip.top}px`,
                 width: `${tooltip.w}px`,
-                border: "1px solid color-mix(in srgb, var(--accent) 55%, transparent)",
+                border: "1px solid color-mix(in srgb, var(--accent) 40%, transparent)",
                 boxShadow:
-                  "0 12px 34px rgba(0,0,0,0.35), 0 0 0 1px color-mix(in srgb, var(--accent) 22%, transparent)",
-                animation: "dscIn .18s ease forwards",
+                  "0 20px 40px -10px color-mix(in srgb, var(--accent) 25%, transparent), 0 0 0 1px color-mix(in srgb, var(--accent) 20%, transparent)",
+                animation: "dscIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards",
               }}
             >
               <div
-                className="text-sm font-semibold"
+                className="text-sm font-bold tracking-wide"
                 style={{ color: "color-mix(in srgb, var(--accent) 90%, white)" }}
               >
                 {info.title}
               </div>
-              <div className="mt-1 text-xs leading-relaxed text-white/80">{info.desc}</div>
+              <div className="mt-1.5 text-xs leading-relaxed text-white/80">{info.desc}</div>
             </div>
           </>
         )}
       </div>
 
-      {/* Mobile: clean card UNDER the logo */}
-      {isMobile && mode && info && (
+      {isMobile && showTooltip && info && (
         <div
-          className="mt-4 rounded-2xl bg-black/60 px-4 py-3 backdrop-blur-md"
+          className="mt-6 rounded-2xl bg-[#0B1121]/85 px-5 py-4 backdrop-blur-xl opacity-0 translate-y-2"
           style={{
-            border: "1px solid color-mix(in srgb, var(--accent) 55%, transparent)",
+            border: "1px solid color-mix(in srgb, var(--accent) 40%, transparent)",
             boxShadow:
-              "0 12px 34px rgba(0,0,0,0.25), 0 0 0 1px color-mix(in srgb, var(--accent) 18%, transparent)",
+              "0 16px 32px -8px color-mix(in srgb, var(--accent) 20%, transparent), 0 0 0 1px color-mix(in srgb, var(--accent) 20%, transparent)",
+            animation: "dscIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards",
           }}
         >
-          
           <div
-            className="text-sm font-semibold"
+            className="text-sm font-bold tracking-wide"
             style={{ color: "color-mix(in srgb, var(--accent) 90%, white)" }}
           >
             {info.title}
           </div>
-          <div className="mt-1 text-xs leading-relaxed text-white/80">{info.desc}</div>
-          
+          <div className="mt-1.5 text-xs leading-relaxed text-white/80">{info.desc}</div>
         </div>
       )}
-      
     </div>
   );
 }

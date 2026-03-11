@@ -22,8 +22,32 @@ i18n.use(initReactI18next).init({
           clubName: "Data Science Club",
           facultyName: "Faculty of Computing & IT",
           langButton: "🇸🇦 Arabic",
+          whyJoinUs: "Join Us",
           about: "About",
 
+        },
+        whyJoinUs: {
+          tagline: "More than just a club",
+          joinButton: "Registration Closed",
+          joinHint: "Follow us on X for updates on the next intake!",
+          slides: {
+            slide1: {
+              title: "Learn New Skills",
+              desc: "Take your learning beyond the classroom. Dive into the world of Data Science, Artificial Intelligence, and modern tech tools."
+            },
+            slide2: {
+              title: "Build Real Projects",
+              desc: "Don't just read about data. Collaborate with a team to build, code, and deploy real-world interactive solutions."
+            },
+            slide3: {
+              title: "Find Your Community",
+              desc: "Meet new friends who share your passion, and build a strong network within the Faculty of Computing and IT."
+            },
+            slide4: {
+              title: "Lead and Innovate",
+              desc: "Develop your communication and leadership skills. Become an influential voice shaping the next generation of tech leaders."
+            }
+          }
         },
         hero: {
           title: "Welcome to the official website of the Data Science Club",
@@ -152,8 +176,32 @@ stayTunedDesc:
           clubName: "نادي علم البيانات",
           facultyName: "كلية الحاسبات وتقنية المعلومات",
           langButton: "🇺🇸 English",
+          whyJoinUs: " انضم إلينا",
           about: "من نحن",
 
+        },
+        whyJoinUs: {
+          tagline: " أكثر من مجرد نادي",
+          joinButton: "التسجيل مغلق حالياً",
+          joinHint: "تابعنا على منصة X لمعرفة موعد التسجيل القادم!",
+          slides: {
+            slide1: {
+              title: "اكتسب مهارات جديدة",
+              desc: "انتقل بتعلمك إلى ما هو أبعد من المناهج الدراسية. تعمق في عالم علم البيانات، والذكاء الاصطناعي، وأحدث الأدوات التقنية."
+            },
+            slide2: {
+              title: "ابنِ مشاريع حقيقية",
+              desc: "لا تكتفِ بالجانب النظري. تعاون مع فريقك لبناء وبرمجة حلول حقيقية وتطبيقات تفاعلية تثري سيرتك الذاتية."
+            },
+            slide3: {
+              title: "تواصل مع مجتمعك",
+              desc: "تعرف على أصدقاء جدد يشاركونك نفس الشغف، وابنِ شبكة علاقات قوية داخل كلية الحاسبات وتقنية المعلومات."
+            },
+            slide4: {
+              title: "قُد وابتكر",
+              desc: "طور مهاراتك القيادية والتواصلية، وكن صوتاً مؤثراً يسهم في تشكيل جيل جديد من قادة تقنية المعلومات."
+            }
+          }
         },
         hero: {
           title: "مرحباً بكم في الموقع الرسمي لنادي علم البيانات",

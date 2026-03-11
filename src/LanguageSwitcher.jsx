@@ -14,7 +14,7 @@ const LanguageSwitcher = () => {
   return (
     <button
       onClick={toggleLanguage}
-      className="px-3 py-1 text-xs font-semibold border border-white/70 rounded-full text-white hover:bg-white/10"  
+      className="px-3 py-1 text-xs font-semibold border border-white/70 rounded-full text-slate-900 hover:bg-white/10"  
     >
       {currentLang === "ar" ? "EN" : "العربية"}
     </button>

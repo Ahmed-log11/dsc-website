@@ -5,7 +5,12 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        // The extra quotes are required for font names with spaces!
+        sans: ['"IBM Plex Sans Arabic"', 'sans-serif'], 
+      },
+    },
   },
   plugins: [],
-};
+}

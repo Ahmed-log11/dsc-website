@@ -1,108 +1,81 @@
-
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import LanguageSwitcher from "../LanguageSwitcher";
-import logo from "../assets/Logo.png";
-
 
 export default function Navbar() {
   const { t, i18n } = useTranslation();
-  const isArabic = i18n.language === "ar";
+  const isArabic = i18n.language?.startsWith("ar");
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="absolute top-0 left-0 w-full z-20">
+    <header className="fixed top-0 left-0 w-full z-50">
+      
+      {/* The Colorful Gradient Top Border */}
+      <div className="h-1.5 w-full bg-gradient-to-r from-[#FF7043] via-[#0C3A60] to-[#35C6A8]" />
+
+      {/* Glassmorphism Nav Body */}
       <nav
         dir={isArabic ? "rtl" : "ltr"}
-        className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between"
+        className="max-w-7xl mx-auto px-5 py-3 flex items-center justify-between bg-white/70 backdrop-blur-md border-b border-slate-200/50 shadow-sm"
       >
-        {/* Logo */}
+        {/* Logo/Club Name */}
         <div className="flex items-center gap-3">
-         
-          <div className="flex flex-col text-white leading-tight">
-            <span className="text-sm font-semibold">
+          <div className="flex flex-col text-slate-900 leading-tight">
+            <span className="text-sm md:text-base font-extrabold tracking-wide bg-gradient-to-r from-[#0C3A60] to-[#35C6A8] bg-clip-text text-transparent font-sans">
               {t("navbar.clubName")}
             </span>
-            <span className="text-xs text-white/70">
+            <span className="text-[10px] md:text-xs text-slate-500 font-semibold font-sans">
               {t("navbar.facultyName")}
             </span>
           </div>
         </div>
 
-        {/* Desktop links */}
-        <div className="hidden md:flex items-center gap-8 text-sm">
-       
-           <a href="#about" className="text-white hover:text-orange-400">
-    {t("navbar.about")}
-  </a>
-          <a href="#sections" className="text-white hover:text-orange-400">
-            {t("navbar.sections")}
-          </a>
-          <a href="#events" className="text-white hover:text-orange-400">
-            {t("navbar.events")}
-          </a>
-          <a href="#contact" className="text-white hover:text-orange-400">
-            {t("navbar.contact")}
-          </a>
+        {/* Desktop Links */}
+        <div className="hidden md:flex items-center gap-8 text-sm font-bold tracking-wide font-sans">
+          {/* NEW LINK ADDED HERE */}
+          <a href="#why-join-us" className="text-slate-700 hover:text-[#FF7043] transition-colors">{t("navbar.whyJoinUs")}</a>
+          <a href="#about" className="text-slate-700 hover:text-[#35C6A8] transition-colors">{t("navbar.about")}</a>
+          <a href="#sections" className="text-slate-700 hover:text-[#0C3A60] transition-colors">{t("navbar.sections")}</a>
+          <a href="#events" className="text-slate-700 hover:text-[#FF7043] transition-colors">{t("navbar.events")}</a>
           <LanguageSwitcher />
         </div>
 
-        {/* Mobile buttons */}
-        <div className="flex md:hidden items-center gap-3">
+        {/* Mobile Controls */}
+        <div className="flex md:hidden items-center gap-4">
           <LanguageSwitcher />
           <button
             onClick={() => setOpen(!open)}
-            className="text-white text-2xl"
+            className="text-slate-900 text-3xl focus:outline-none"
             aria-label="Menu"
           >
-            ☰
+            {open ? "✕" : "☰"}
           </button>
         </div>
       </nav>
 
-      {/* Mobile menu */}
-   {open && (
-  <div
-    dir={isArabic ? "rtl" : "ltr"}
-    className="md:hidden bg-slate-900/95 backdrop-blur text-white px-6 py-6 space-y-4"
-  >
-=
-
-    <a
-  href="#about"
-  onClick={() => setOpen(false)}
-  className="block text-white hover:text-orange-400 transition-colors duration-200"
->
-  {t("navbar.about")}
-</a>
-
-    <a
-      href="#sections"
-      onClick={() => setOpen(false)}
-      className="block text-white hover:text-orange-400 transition-colors duration-200"
-    >
-      {t("navbar.sections")}
-    </a>
-
-    <a
-      href="#events"
-      onClick={() => setOpen(false)}
-      className="block text-white hover:text-orange-400 transition-colors duration-200"
-    >
-      {t("navbar.events")}
-    </a>
-
-    <a
-      href="#contact"
-      onClick={() => setOpen(false)}
-      className="block text-white hover:text-orange-400 transition-colors duration-200"
-    >
-      {t("navbar.contact")}
-    </a>
-  </div>
-)}
-
+      {/* Mobile Menu Overlay */}
+      <div
+        className={`md:hidden absolute w-full bg-white/95 backdrop-blur-2xl transition-all duration-300 ease-in-out border-b border-slate-200 shadow-xl overflow-hidden ${
+          open ? "max-h-[400px] opacity-100" : "max-h-0 opacity-0"
+        }`}
+        dir={isArabic ? "rtl" : "ltr"}
+      >
+        <div className="flex flex-col p-6 space-y-6 font-bold text-lg text-slate-800 font-sans">
+         
+          <a href="#why-join-us" onClick={() => setOpen(false)} className="active:text-[#FF7043] border-b border-slate-50 pb-2">
+            {t("navbar.whyJoinUs")}
+          </a>
+          <a href="#about" onClick={() => setOpen(false)} className="active:text-[#35C6A8] border-b border-slate-50 pb-2">
+            {t("navbar.about")}
+          </a>
+          <a href="#sections" onClick={() => setOpen(false)} className="active:text-[#0C3A60] border-b border-slate-50 pb-2">
+            {t("navbar.sections")}
+          </a>
+          <a href="#events" onClick={() => setOpen(false)} className="active:text-[#FF7043] border-b border-slate-50 pb-2">
+            {t("navbar.events")}
+          </a>
+        </div>
+      </div>
     </header>
   );
 }
- 
