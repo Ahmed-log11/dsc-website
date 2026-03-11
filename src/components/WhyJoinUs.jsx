@@ -10,10 +10,8 @@ import slide4 from "../assets/slide4.jpg";
 export default function WhyJoinUs() {
   const { t, i18n } = useTranslation();
   const isArabic = i18n.language?.startsWith("ar");
-  
   const [activeIndex, setActiveIndex] = useState(0);
 
-  // Slides array using translation keys
   const slides = [
     {
       id: 0,
@@ -41,7 +39,6 @@ export default function WhyJoinUs() {
     }
   ];
 
-  // Auto-play logic
   useEffect(() => {
     const timer = setInterval(() => {
       setActiveIndex((current) => (current + 1) % slides.length);
@@ -50,21 +47,24 @@ export default function WhyJoinUs() {
   }, [slides.length]);
 
   return (
-    // ID matches the Navbar link: #why-join-us
-    <section id="why-join-us" className="relative w-full pb-24 pt-8 md:pt-12 overflow-hidden">
+    <section id="why-join-us" className="relative w-full pb-24 pt-8 md:pt-12 overflow-hidden bg-slate-50">
+      
+      {/* Container: Stacked column on mobile, split row on desktop */}
       <div 
-        className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center gap-12 lg:gap-20" 
+        className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center md:items-start gap-8 lg:gap-20"
         dir={isArabic ? "rtl" : "ltr"}
       >
         
-        {/* Left Side: Dynamic Text & Controls */}
-        <div className="w-full md:w-1/2 flex flex-col justify-center">
-          <h2 className="text-sm font-bold tracking-widest text-[#FF7043] uppercase mb-8 md:mb-12">
+        {/* ======================================= */}
+        {/* LEFT COLUMN: Text */}
+        {/* ======================================= */}
+        <div className={`w-full md:w-1/2 flex flex-col justify-center order-1 ${isArabic ? 'md:order-last' : 'md:order-first'}`}>
+          <h2 className={`text-sm font-bold tracking-widest text-[#FF7043] uppercase mb-8 md:mb-12 font-sans ${isArabic ? 'text-right' : 'text-left'}`}>
             {t("whyJoinUs.tagline")}
           </h2>
           
-          {/* Text Container */}
-          <div className="relative h-[220px] md:h-[240px] w-full">
+          {/* Dynamic Text Carousel */}
+          <div className={`relative h-[180px] md:h-[240px] w-full ${isArabic ? 'text-right' : 'text-left'}`}>
             {slides.map((slide, index) => (
               <div 
                 key={slide.id}
@@ -72,18 +72,58 @@ export default function WhyJoinUs() {
                   activeIndex === index ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
                 }`}
               >
-                <h3 className="text-3xl lg:text-5xl font-extrabold text-slate-900 leading-tight mb-5 md:mb-6">
+                <h3 className="text-3xl lg:text-5xl font-extrabold text-[#0C3A60] leading-tight mb-4 md:mb-6 font-sans">
                   {slide.title}
                 </h3>
-                <p className="text-base md:text-lg text-slate-600 leading-relaxed max-w-md">
+                <p className="text-base md:text-lg text-slate-600 leading-relaxed max-w-md font-sans">
                   {slide.desc}
                 </p>
               </div>
             ))}
           </div>
 
-          {/* Progress Indicators */}
-          <div className="flex gap-3 mt-4 md:mt-8">
+          {/* DESKTOP ONLY BUTTON: Hidden on mobile (hidden md:flex) */}
+          <div className={`hidden md:flex mt-8 flex-col ${isArabic ? 'items-end' : 'items-start'}`}>
+            <button 
+              disabled
+              className="px-8 py-3.5 rounded-full font-bold tracking-wide bg-slate-100/80 text-slate-400 border border-slate-200 cursor-not-allowed flex items-center gap-3"
+            >
+              <svg className="w-5 h-5 opacity-60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+              {t("whyJoinUs.joinButton")}
+            </button>
+            <p className="mt-3 text-sm text-slate-500 font-medium px-2 font-sans">
+              {t("whyJoinUs.joinHint")}
+            </p>
+          </div>
+        </div>
+
+        {/* ======================================= */}
+        {/* RIGHT COLUMN: Images & Dots */}
+        {/* ======================================= */}
+        <div className={`w-full md:w-1/2 flex flex-col order-2 ${isArabic ? 'md:order-first' : 'md:order-last'}`}>
+          {/* Cross-fading Images */}
+          <div className="relative w-full h-[300px] md:h-[500px] rounded-3xl overflow-hidden shadow-2xl border border-slate-200">
+            {slides.map((slide, index) => (
+              <div
+                key={slide.id}
+                className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                  activeIndex === index ? "opacity-100" : "opacity-0"
+                }`}
+              >
+                <div className="absolute inset-0 bg-gradient-to-tr from-[#35C6A8]/10 to-[#0C3A60]/10 z-10" />
+                <img 
+                  src={slide.img} 
+                  alt={slide.title} 
+                  className="absolute inset-0 w-full h-full object-cover z-0" 
+                />
+              </div>
+            ))}
+          </div>
+
+          {/* Progress Indicators (Clickable Dots) */}
+          <div className={`flex gap-3 mt-6 ${isArabic ? 'md:justify-end' : 'md:justify-start'} justify-center w-full`}>
             {slides.map((_, index) => (
               <button
                 key={index}
@@ -95,41 +135,24 @@ export default function WhyJoinUs() {
               />
             ))}
           </div>
-
-          {/* Registration Status Button */}
-          <div className="mt-10 md:mt-12 flex flex-col items-start">
-            <button 
-              disabled
-              className="px-8 py-3.5 rounded-full font-bold tracking-wide bg-slate-100 text-slate-400 border border-slate-200 cursor-not-allowed flex items-center gap-3"
-            >
-              <svg className="w-5 h-5 opacity-60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-              </svg>
-              {t("whyJoinUs.joinButton")}
-            </button>
-            <p className="mt-3 text-sm text-slate-500 font-medium px-2">
-              {t("whyJoinUs.joinHint")}
-            </p>
-          </div>
         </div>
 
-        {/* Right Side: Cross-fading Images */}
-        <div className="w-full md:w-1/2 relative h-[350px] md:h-[500px] rounded-3xl overflow-hidden shadow-2xl border border-slate-200">
-          {slides.map((slide, index) => (
-            <div
-              key={slide.id}
-              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-                activeIndex === index ? "opacity-100" : "opacity-0"
-              }`}
-            >
-              <div className="absolute inset-0 bg-gradient-to-tr from-[#35C6A8]/10 to-[#0C3A60]/10 z-10" />
-              <img 
-                src={slide.img} 
-                alt={slide.title} 
-                className="absolute inset-0 w-full h-full object-cover z-0" 
-              />
-            </div>
-          ))}
+        {/* ======================================= */}
+        {/* MOBILE ONLY BUTTON: Shown at the very bottom */}
+        {/* ======================================= */}
+        <div className="flex md:hidden w-full flex-col items-center order-3 mt-4">
+          <button 
+            disabled
+            className="px-8 py-3.5 rounded-full font-bold tracking-wide bg-slate-100/80 text-slate-400 border border-slate-200 cursor-not-allowed flex items-center gap-3 w-full justify-center max-w-[300px]"
+          >
+            <svg className="w-5 h-5 opacity-60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
+            {t("whyJoinUs.joinButton")}
+          </button>
+          <p className="mt-3 text-sm text-slate-500 font-medium text-center px-2 font-sans">
+            {t("whyJoinUs.joinHint")}
+          </p>
         </div>
         
       </div>

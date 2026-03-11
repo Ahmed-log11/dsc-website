@@ -41,7 +41,7 @@ i18n.use(initReactI18next).init({
             },
             slide3: {
               title: "Find Your Community",
-              desc: "Meet new friends who share your passion, and build a strong network within the Faculty of Computing and IT."
+              desc: "Meet new friends who share your passion, and build a strong network."
             },
             slide4: {
               title: "Lead and Innovate",
@@ -195,7 +195,7 @@ stayTunedDesc:
             },
             slide3: {
               title: "تواصل مع مجتمعك",
-              desc: "تعرف على أصدقاء جدد يشاركونك نفس الشغف، وابنِ شبكة علاقات قوية داخل كلية الحاسبات وتقنية المعلومات."
+              desc: "تعرف على أصدقاء جدد يشاركونك نفس الشغف، وابنِ شبكة علاقات قوية."
             },
             slide4: {
               title: "قُد وابتكر",

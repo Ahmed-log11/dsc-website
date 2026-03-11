@@ -6,16 +6,14 @@ export default function AboutSection() {
   const isArabic = i18n.language?.startsWith("ar");
 
   return (
-    // 1. We apply the direction to the ENTIRE section here
-    <section 
-      id="about" 
-      className="relative bg-white py-20 lg:py-28"
-      dir={isArabic ? "rtl" : "ltr"}
-    >
+    <section id="about" className="relative bg-white py-20 lg:py-28" dir={isArabic ? "rtl" : "ltr"}>
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-center">
 
-          {/* 2. Content Side is now FIRST in the code */}
+          {/* ======================================= */}
+          {/* CONTENT SIDE: Always visible */}
+          {/* ======================================= */}
           <div>
             <h2 className="text-[#35C6A8] font-bold tracking-tight text-3xl md:text-4xl mb-6 font-sans">
               {t("about.title")}
@@ -46,16 +44,17 @@ export default function AboutSection() {
             </div>
           </div>
 
-          {/* 3. Image Side is now SECOND in the code */}
-          <div className="flex justify-center">
-            <div className="relative">
-              <div className="absolute inset-0 bg-[#35C6A8]/5 blur-3xl rounded-full" />
-              <img
-                src={abstractLogo}
-                alt="Abstract Logo DSC"
-                className="relative z-10 w-[350px] lg:w-[450px] mix-blend-multiply"
-              />
-            </div>
+          {/* ======================================= */}
+          {/* IMAGE SIDE: Hidden on phones! */}
+          {/* ======================================= */}
+          {/* Added 'hidden md:flex' to completely remove it from mobile screens */}
+          <div className="hidden md:flex justify-center">
+            <img
+              src={abstractLogo}
+              alt="Abstract Logo DSC"
+              // Stripped all blend modes and shadows. Just the raw, clean image.
+              className="w-[350px] lg:w-[450px]"
+            />
           </div>
 
         </div>
