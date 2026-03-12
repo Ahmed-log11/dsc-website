@@ -3,7 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import LogoInteractive from "./LogoInteractive";
 
 // ====== Moving Data Text Content ======
-// Curated list of relatable SQL, Python, and bilingual Data Science terms.
+
 const dataTextColumn = [
   "SELECT * FROM insights",
   "import tensorflow as tf",
@@ -114,7 +114,7 @@ export default function Herosection() {
           `}</style>
           
           {/* We generate 6 single, evenly spaced lines instead of pairs */}
-          {[1, 2, 3, 4, 5, 6].map((lineIdx) => (
+          {[1, 2, 3, 4].map((lineIdx) => (
             <div key={lineIdx} className="relative flex overflow-hidden w-full">
               
               {/* The moving track */}
