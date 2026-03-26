@@ -66,7 +66,7 @@ i18n.use(initReactI18next).init({
         },
 
         footerSection: {
-          copyright: "© 2025 All rights reserved | Tech Department Team",
+          copyright: "© 2026 All rights reserved | Tech Department Team",
         },
         departments: {
           title :'Data Science Club Sections',
@@ -230,7 +230,7 @@ stayTunedDesc:
 },
 
         footerSection: {
-          copyright: "© 2025 جميع الحقوق محفوظة | فريق قسم التقنية",
+          copyright: "© 2026 جميع الحقوق محفوظة | فريق قسم التقنية",
         },
         logo: {
   meanings: {
