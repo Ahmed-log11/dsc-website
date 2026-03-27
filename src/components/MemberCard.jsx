@@ -49,10 +49,10 @@ export default function MemberCard({ member }) {
   const hasFunFact = isValid(member.funFact);
 
   const content = (
-    <div
-      className={`relative flex h-full min-h-[350px] sm:min-h-[380px] flex-col overflow-hidden bg-white ${
-        isLeader ? "rounded-[26px]" : "rounded-[28px] border-[2px]"
-      }`}
+   <div
+  className={`relative flex h-full min-h-[400px] flex-col overflow-hidden bg-white ${
+    isLeader ? "rounded-[26px]" : "rounded-[28px] border-[2px]"
+  }`}
       style={
         isLeader
           ? undefined
@@ -157,20 +157,26 @@ export default function MemberCard({ member }) {
   );
 
  
-  if (isLeader) {
+if (isLeader) {
     return (
       <div
-        className="flex flex-col h-full w-[250px] min-w-[250px] flex-none rounded-[28px] p-[2px] shadow-none sm:w-full sm:min-w-0 sm:shadow-[0_12px_30px_rgba(0,0,0,0.10)]"
+        className="flex flex-col h-full w-[260px] min-w-[260px] flex-none rounded-[28px] p-[2px] shadow-none sm:w-full sm:min-w-0 sm:shadow-[0_12px_30px_rgba(0,0,0,0.10)]"
         style={{ background: theme.borderGradient }}
       >
-        {content}
+       
+        <div className="flex-1 flex flex-col h-full">
+          {content}
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="flex flex-col h-full w-[250px] min-w-[250px] flex-none rounded-[28px] shadow-none sm:w-full sm:min-w-0 sm:shadow-[0_12px_30px_rgba(0,0,0,0.10)]">
-      {content}
+    <div className="flex flex-col h-full w-[260px] min-w-[260px] flex-none rounded-[28px] shadow-none sm:w-full sm:min-w-0 sm:shadow-[0_12px_30px_rgba(0,0,0,0.10)]">
+     
+      <div className="flex-1 flex flex-col h-full">
+        {content}
+      </div>
     </div>
   );
 }
