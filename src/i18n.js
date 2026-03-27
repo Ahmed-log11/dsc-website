@@ -135,21 +135,18 @@ stayTunedDesc:
       },
     },
   },
-  previous: {
-    items: {
-     prev1: {
-        title: "DSC Orientation Day",
-        desc: "An introduction to the club, our sections, and how to get involved.",
-      },
-      prev2: {
-        title: "Robocon Booth",
-        desc: "We hosted a booth at Robocon to showcase the club’s work and connect with students.",
-      },
-      prev3: {
-        title: "Exploratory Data Analysis Workshop",
-        desc: "A hands-on workshop on EDA concepts and techniques using real datasets.",
-      },
-
+previous: {
+            seeAllBtn: "See All Activities",
+            items: {
+              workshops: {
+                title: "Workshops & Training",
+                desc: "We hosted various technical workshops, bootcamps, and hands-on training sessions to build real-world Data Science skills."
+              },
+              community: {
+                title: "Events & Community",
+                desc: "We organized interactive community gatherings, participated in various events, and hosted comprehensive club orientation days."
+              }
+      
     },
   },
 },
@@ -296,20 +293,17 @@ stayTunedDesc:
       },
     },
   },
-  previous: {
-    items: {
-      prev1: {
-        title: "يوم التعريف بالنادي",
-        desc: "تعريف بالنادي وأقسامه وكيفية الانضمام والمشاركة.",
-      },
-      prev2: {
-        title: "النادي في روبوكون",
-        desc: "شاركنا بركن في فعالية روبوكون لعرض أعمال النادي والتواصل مع الطلاب.",
-      },
-      prev3: {
-        title: "ورشة تحليل البيانات الاستكشافي",
-        desc: "ورشة تطبيقية حول مفاهيم وتقنيات تحليل البيانات الاستكشافي باستخدام بيانات واقعية.",
-      },
+ previous: {
+            seeAllBtn: "عرض جميع الأنشطة",
+            items: {
+              workshops: {
+                title: "ورش العمل والتدريب",
+                desc: "قدمنا العديد من ورش العمل التقنية، والمعسكرات التدريبية، والجلسات العملية لبناء مهارات حقيقية في علم البيانات."
+              },
+              community: {
+                title: "الفعاليات والمجتمع",
+                desc: "نظمنا لقاءات مجتمعية تفاعلية، شاركنا في عدة فعاليات، وأقمنا أياماً تعريفية شاملة للنادي."
+              }
 
     },
   },
