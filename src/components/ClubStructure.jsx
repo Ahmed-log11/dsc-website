@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import members from "../data/clubMembers.json";
+import members from "../data/ClubMembers.json";
 import MemberCard from "./MemberCard";
 
 export default function ClubStructure() {
