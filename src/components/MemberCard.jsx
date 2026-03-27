@@ -6,10 +6,7 @@ import { useTranslation } from "react-i18next";
 import { FaLinkedinIn } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 
-
 const themes = {
-
-  
   leaders: {
     bannerImage: LeadersGradient,
     borderGradient:
@@ -18,21 +15,18 @@ const themes = {
       "linear-gradient(105deg, #FF7043 0%, #154A78 45%, #35C6A8 100%)",
     roleColor: "#154A78",
   },
-
   tech: {
     bannerImage: TechGradient,
     borderColor: "#35C6A8",
     ringColor: "#35C6A8",
     roleColor: "#35C6A8",
   },
-
   "Media & Marketing": {
     bannerImage: MarketingGradient,
     borderColor: "#FF7043",
     ringColor: "#FF7043",
     roleColor: "#FF7043",
   },
-
   "PR & Activities": {
     bannerImage: PRGradient,
     borderColor: "#0C3A60",
@@ -107,18 +101,16 @@ export default function MemberCard({ member }) {
       </div>
 
       {/* Content */}
-      <div className="flex flex-1 flex-col items-center px-5 sm:px-6 pt-5 text-center">
-
+      <div className="flex flex-1 flex-col items-center px-5 sm:px-6 pt-5 pb-5 text-center">
         {/* Name */}
         <h3 className="text-[1.15rem] sm:text-[1.2rem] font-bold text-[#0C3A60]">
           {member.name}
         </h3>
         {/* Role */}
         <p
-          className="mt-2 text-[1rem] font-semibold"
+          className="mt-1 text-[1rem] font-semibold"
           style={{ color: theme.roleColor }}
         >
-         
           {t(`roles.${member.role}`, member.role)}
         </p>
 
@@ -134,45 +126,41 @@ export default function MemberCard({ member }) {
           </div>
         )}
 
-        {/* Social Icons */}
-        {(hasTwitter || hasLinkedin) && (
-          <div className="mt-auto flex items-center gap-6 pt-4 pb-4 text-[18px]">
+        {}
+        <div className="mt-auto flex min-h-[40px] items-center justify-center gap-6 pt-4 text-[18px]">
+          {hasTwitter && (
+            <a
+              href={member.twitter}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#0C3A60] transition-colors duration-300 hover:text-[#FF7043]"
+              aria-label={`${member.name} X`}
+            >
+              <FaXTwitter />
+            </a>
+          )}
 
-            {hasTwitter && (
-              <a
-                href={member.twitter}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#0C3A60] transition-colors duration-300 hover:text-[#FF7043]"
-                aria-label={`${member.name} X`}
-              >
-                <FaXTwitter />
-              </a>
-            )}
-
-            {hasLinkedin && (
-              <a
-                href={member.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#0C3A60] transition-colors duration-300 hover:text-[#FF7043]"
-                aria-label={`${member.name} LinkedIn`}
-              >
-                <FaLinkedinIn />
-              </a>
-            )}
-
-          </div>
-        )}
-
+          {hasLinkedin && (
+            <a
+              href={member.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#0C3A60] transition-colors duration-300 hover:text-[#FF7043]"
+              aria-label={`${member.name} LinkedIn`}
+            >
+              <FaLinkedinIn />
+            </a>
+          )}
+        </div>
       </div>
     </div>
   );
 
-if (isLeader) {
-  return (
-    <div
-      className="h-full w-[250px] min-w-[250px] flex-none rounded-[28px] p-[2px] shadow-none sm:w-full sm:min-w-0 sm:shadow-[0_12px_30px_rgba(0,0,0,0.10)]"
+ 
+  if (isLeader) {
+    return (
+      <div
+        className="flex flex-col h-full w-[250px] min-w-[250px] flex-none rounded-[28px] p-[2px] shadow-none sm:w-full sm:min-w-0 sm:shadow-[0_12px_30px_rgba(0,0,0,0.10)]"
         style={{ background: theme.borderGradient }}
       >
         {content}
@@ -181,8 +169,8 @@ if (isLeader) {
   }
 
   return (
-  <div className="h-full w-[250px] min-w-[250px] flex-none rounded-[28px] shadow-none sm:w-full sm:min-w-0 sm:shadow-[0_12px_30px_rgba(0,0,0,0.10)]">
-    {content}
-  </div>
-);
+    <div className="flex flex-col h-full w-[250px] min-w-[250px] flex-none rounded-[28px] shadow-none sm:w-full sm:min-w-0 sm:shadow-[0_12px_30px_rgba(0,0,0,0.10)]">
+      {content}
+    </div>
+  );
 }
