@@ -2,11 +2,14 @@ import LeadersGradient from "../assets/Leaders_gradient.png";
 import TechGradient from "../assets/Tech_gradient.png";
 import MarketingGradient from "../assets/Marketing_gradient.png";
 import PRGradient from "../assets/PR_gradient.png";
-
+import { useTranslation } from "react-i18next";
 import { FaLinkedinIn } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 
+
 const themes = {
+
+  
   leaders: {
     bannerImage: LeadersGradient,
     borderGradient:
@@ -43,6 +46,7 @@ const isValid = (value) => {
 };
 
 export default function MemberCard({ member }) {
+  const { t } = useTranslation();
   const theme = themes[member.section] || themes.tech;
   const isLeader = member.section === "leaders";
 
@@ -52,7 +56,7 @@ export default function MemberCard({ member }) {
 
   const content = (
     <div
-      className={`relative flex h-[420px] sm:h-[460px] flex-col overflow-hidden bg-white ${
+      className={`relative flex h-full min-h-[350px] sm:min-h-[380px] flex-col overflow-hidden bg-white ${
         isLeader ? "rounded-[26px]" : "rounded-[28px] border-[2px]"
       }`}
       style={
@@ -109,13 +113,13 @@ export default function MemberCard({ member }) {
         <h3 className="text-[1.15rem] sm:text-[1.2rem] font-bold text-[#0C3A60]">
           {member.name}
         </h3>
-
         {/* Role */}
         <p
           className="mt-2 text-[1rem] font-semibold"
           style={{ color: theme.roleColor }}
         >
-          {member.role}
+         
+          {t(`roles.${member.role}`, member.role)}
         </p>
 
         {/* Fun Fact (Scrollable) */}
@@ -165,10 +169,10 @@ export default function MemberCard({ member }) {
     </div>
   );
 
-  if (isLeader) {
-    return (
-      <div
-        className="w-[250px] min-w-[250px] flex-none rounded-[28px] p-[2px] shadow-none sm:w-full sm:min-w-0 sm:shadow-[0_12px_30px_rgba(0,0,0,0.10)]"
+if (isLeader) {
+  return (
+    <div
+      className="h-full w-[250px] min-w-[250px] flex-none rounded-[28px] p-[2px] shadow-none sm:w-full sm:min-w-0 sm:shadow-[0_12px_30px_rgba(0,0,0,0.10)]"
         style={{ background: theme.borderGradient }}
       >
         {content}
@@ -177,8 +181,8 @@ export default function MemberCard({ member }) {
   }
 
   return (
-    <div className="w-[250px] min-w-[250px] flex-none rounded-[28px] shadow-none sm:w-full sm:min-w-0 sm:shadow-[0_12px_30px_rgba(0,0,0,0.10)]">
-      {content}
-    </div>
-  );
+  <div className="h-full w-[250px] min-w-[250px] flex-none rounded-[28px] shadow-none sm:w-full sm:min-w-0 sm:shadow-[0_12px_30px_rgba(0,0,0,0.10)]">
+    {content}
+  </div>
+);
 }

@@ -1,11 +1,15 @@
 import { useTranslation } from "react-i18next";
 import members from "../data/ClubMembers.json";
 import MemberCard from "./MemberCard";
-
+import { useEffect } from "react";
+import SimpleNavbar from "./SimpleNavbar";
 export default function ClubStructure() {
+
   const { i18n } = useTranslation();
   const isArabic = i18n.language?.startsWith("ar");
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const sections = [
     {
       key: "leaders",
@@ -30,6 +34,8 @@ export default function ClubStructure() {
   ];
 
   return (
+    <>
+    <SimpleNavbar />
     <section
       className="bg-slate-50 border-t border-slate-100 min-h-screen py-20 pb-24 lg:py-28"
       dir={isArabic ? "rtl" : "ltr"}
@@ -38,7 +44,7 @@ export default function ClubStructure() {
         {/* Page Title */}
         <div className="text-center mb-16">
           <h1 className="text-[#0C3A60] font-bold text-3xl md:text-4xl lg:text-5xl font-sans">
-            {isArabic ? "هيكلة النادي" : "Club Structure"}
+            {isArabic ? "تعرف على فريقنا" : "Meet the Team"}
           </h1>
         </div>
 
@@ -90,5 +96,6 @@ export default function ClubStructure() {
         </div>
       </div>
     </section>
+    </>
   );
 }

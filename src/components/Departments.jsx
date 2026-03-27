@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import techIcon from "../assets/icons/techIcon.svg";
 import mediaIcon from "../assets/icons/mediaIcon.svg";
 import prIcon from "../assets/icons/prIcon.svg";
-
+import { FaArrowRight, FaArrowLeft } from "react-icons/fa6";  
 export default function Departments() {
   const { t, i18n } = useTranslation();
   const isArabic = i18n.language?.startsWith("ar");
@@ -77,13 +77,19 @@ export default function Departments() {
           </p>
         </div>
       </div>
-      {/* Club Structure Button */}
-      <div className="mt-12 flex justify-center px-6">
+     <div className="mt-14 flex justify-center px-6">
         <Link
           to="/club-structure"
-          className="inline-flex items-center justify-center rounded-full bg-[#35C6A8] px-8 py-3 text-sm md:text-base font-semibold text-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+          className="group inline-flex items-center gap-3 justify-center rounded-full bg-[#35C6A8] px-10 py-3.5 md:px-12 md:py-4 text-base md:text-lg font-bold text-white shadow-[0_4px_14px_rgba(53,198,168,0.4)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(53,198,168,0.6)]"
         >
-          {isArabic ? "هيكلة النادي" : "Club Structure"}
+          <span>{isArabic ? "تعرف على فريقنا" : "Meet the Team"}</span>
+          
+          
+          {isArabic ? (
+            <FaArrowLeft className="transition-transform duration-300 group-hover:-translate-x-1.5" />
+          ) : (
+            <FaArrowRight className="transition-transform duration-300 group-hover:translate-x-1.5" />
+          )}
         </Link>
       </div>
     </section>

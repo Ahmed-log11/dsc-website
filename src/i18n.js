@@ -158,8 +158,14 @@ stayTunedDesc:
         xPosts: {
   title: "Latest on X",
   viewPost: "View post",
-}
-    
+},
+    roles: {
+          Leader: "Leader",
+          Subleader: "Subleader",
+          Member: "Member", 
+          "Club Leader": "Club Leader",
+          "Club Sub Leader": "Club Sub Leader"
+        }
 
       },
   
@@ -310,6 +316,12 @@ stayTunedDesc:
 },
 
 
+        roles: {
+          Leader: "قائد",
+          Subleader: "نائب القائد",
+          Member: "عضو", 
+          "Club Leader": "قائد النادي",
+          "Club Sub Leader": "نائب قائد النادي"},
         
            xPosts: {
   title: "آخر ما نُشر على X",
