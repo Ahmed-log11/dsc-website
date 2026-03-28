@@ -8,7 +8,7 @@ import Departments from "./components/Departments";
 import EventsSection from "./components/EventsSection";
 import XPosts from "./components/XPosts";
 import FooterSection from "./components/FooterSection";
-
+import ActivitiesPage from "./components/ActivitiesPage";
 function HomePage() {
   return (
     <>
@@ -45,6 +45,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/club-structure" element={<ClubStructure />} />
+        <Route path="/activities" element={<ActivitiesPage />} />
       </Routes>
 
       <FooterSection />

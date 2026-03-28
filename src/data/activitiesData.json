@@ -1,0 +1,118 @@
+[
+     {
+   "Name (EN)": "Hackathons & Competitions Champions Series",
+   "Name (AR)": "سلسلة أبطال الهاكاثونات والمسابقات",
+   "Category": "community",
+   "Description (EN)": "A series hosting champions of various hackathons and competitions to share their inspiring success stories and experiences.",
+   "Description (AR)": "سلسلة لقاءات تستضيف أبطال الهاكاثونات والمسابقات لمشاركة قصص نجاحهم وتجاربهم الملهمة.",
+   "contributors": "",
+   "date": "Mar 7, 2026",
+   "image": ""
+ }
+,
+     {
+   "Name (EN)": "Tale of Numbers Series",
+   "Name (AR)": "سلسلة حكاية أرقام",
+   "Category": "workshops ",
+   "Description (EN)": "An engaging educational series diving deep into data storytelling and statistics.",
+   "Description (AR)": "سلسلة تعليمية تفاعلية تتعمق في فن سرد القصص بالبيانات والإحصاء.",
+   "contributors": "فواز عبدالله, زياد حلواني, مريم مغربي, عمر بن طالب",
+   "date": "Nov 9, 2025",
+   "image": ""
+ },
+  {
+   "Name (EN)": "Protothon",
+   "Name (AR)": "بروتوثون",
+   "Category": "community",
+   "Description (EN)": "The club's participation and showcase at the Protothon event.",
+   "Description (AR)": "مشاركة النادي في فعالية بروتوثون.",
+   "contributors": "",
+   "date": "Jan 11, 2026",
+   "image": ""
+ },
+
+ {
+   "Name (EN)": "Effective Planning: Workshop & Competition",
+   "Name (AR)": "التخطيط الفعال: ورشة عمل ومسابقة",
+   "Category": "workshops ",
+   "Description (EN)": "An interactive session teaching effective planning strategies, followed by a competition.",
+   "Description (AR)": "جلسة تفاعلية لتعلم استراتيجيات التخطيط الفعال، تليها مسابقة تنافسية.",
+   "contributors": "رهام الزهراني",
+   "date": "Nov 27, 2025",
+   "image": ""
+ },
+  {
+   "Name (EN)": "Exploratory Data Analysis Workshop",
+   "Name (AR)": "ورشة تحليل البيانات الاستكشافي",
+   "Category": "workshops ",
+   "Description (EN)": "A hands-on workshop covering the fundamentals of exploratory data analysis.",
+   "Description (AR)": "ورشة عمل تطبيقية تغطي أساسيات تحليل البيانات الاستكشافي.",
+   "contributors": "أسامة الحبشي, جود الريمي",
+   "date": "Oct 14, 2025",
+   "image": ""
+ },
+  {
+   "Name (EN)": "Orientation Day for Clubs",
+   "Name (AR)": "يوم التعريف بالأندية",
+   "Category": "community",
+   "Description (EN)": "A welcoming event to introduce new students to the club's vision and activities.",
+   "Description (AR)": "فعالية ترحيبية لتعريف الطلاب الجدد برؤية النادي وأنشطته.",
+   "contributors": "",
+   "date": "Sep 9, 2025",
+   "image": ""
+ },
+  {
+   "Name (EN)": "Robocon",
+   "Name (AR)": "النادي في روبوكون",
+   "Category": "community",
+   "Description (EN)": "The club's participation and showcase at the Robocon event.",
+   "Description (AR)": "مشاركة النادي في فعالية روبوكون.",
+   "contributors": "",
+   "date": "May 6, 2025",
+   "image": ""
+ },
+  {
+   "Name (EN)": "Data Analysis Day",
+   "Name (AR)": "يوم تحليل البيانات",
+   "Category": "workshops ",
+   "Description (EN)": "A dedicated day of workshops and activities centered around data analysis techniques.",
+   "Description (AR)": "يوم مخصص للورش والأنشطة المتمحورة حول تقنيات تحليل البيانات.",
+   "contributors": "",
+   "date": "May 5, 2025",
+   "image": ""
+ },
+
+ {
+   "Name (EN)": "Eid Gathering",
+   "Name (AR)": "لقاء العيد",
+   "Category": "community",
+   "Description (EN)": "A festive community gathering to celebrate Eid and connect with club members.",
+   "Description (AR)": "لقاء مجتمعي احتفالي لتبادل التهاني بمناسبة العيد وتعزيز الروابط بين الأعضاء.",
+   "contributors": "",
+   "date": "May 2, 2025",
+   "image": ""
+ },
+ {
+   "Name (EN)": "AI Bootcamp",
+   "Name (AR)": "معسكر الذكاء الاصطناعي",
+   "Category": "workshops ",
+   "Description (EN)": "An intensive bootcamp focused on artificial intelligence concepts and applications.",
+   "Description (AR)": "معسكر تدريبي مكثف يركز على مفاهيم الذكاء الاصطناعي وتطبيقاته.",
+   "contributors": "أسامة الحبشي, جود الريمي, عبدالإله خلف",
+   "date": "Apr 27, 2025",
+   "image": ""
+ },
+ {
+   "Name (EN)": "Intro to Data Science",
+   "Name (AR)": "مقدمة في علوم البيانات",
+   "Category": "workshops ",
+   "Description (EN)": "A beginner-friendly session introducing the core concepts of data science.",
+   "Description (AR)": "لقاء تعريفي مبسط يطرح المفاهيم الأساسية لعلوم البيانات.",
+   "contributors": "عبدالإله خلف",
+   "date": "Mar 5, 2025",
+   "image": ""
+ }
+
+
+
+]
