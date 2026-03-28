@@ -2,8 +2,28 @@ import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import SimpleNavbar from "../components/SimpleNavbar"; // Make sure this path is correct!
 import activitiesData from "../data/activitiesData.json"
-
-const imageMap = {};
+import EdaImg from "../assets/Eda.jpg";
+import planningImg from "../assets/planning.jpg";
+import AIbootcampImg from "../assets/AIbootcamp.jpg";
+import IntroDsImg from "../assets/IntroDs.jpg";
+import OrientationDayImg from "../assets/OrientationDay.jpg";
+import DsDayImg from "../assets/DsDay.jpg";
+import EidImg from "../assets/Eid.jpg";
+import RoboconImg from "../assets/Robocon.jpg";
+import ChampionsSeriesImg from "../assets/ChampionsSeries.jpg";
+import TaleImg from "../assets/Tale.jpg";
+const imageMap = {
+  "Eda": EdaImg,
+  "planning": planningImg,
+  "AIbootcamp": AIbootcampImg,
+  "IntroDs": IntroDsImg,
+  "OrientationDay": OrientationDayImg,
+  "DsDay": DsDayImg,
+  "Eid": EidImg,
+  "Robocon": RoboconImg,
+  "ChampionsSeries": ChampionsSeriesImg,
+  "Tale": TaleImg
+};
 
 export default function ActivitiesPage() {
   const { i18n } = useTranslation();
@@ -78,24 +98,29 @@ export default function ActivitiesPage() {
                   className="group flex flex-col h-full rounded-3xl border border-slate-100 overflow-hidden bg-white shadow-sm hover:shadow-2xl hover:shadow-slate-200/50 hover:-translate-y-2 transition-all duration-300"
                 >
                   {/* Image Section */}
-                  <div className="h-56 w-full overflow-hidden relative bg-[#0C3A60]">
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0C3A60]/60 to-transparent z-10" />
+               {/* Image Section */}
+                  {/* 1. Changed h-56 to h-72 to make the box taller for your flyers */}
+                  {/* 2. Set the background to pure bg-white so it blends with your image backgrounds */}
+                  <div className="h-62 w-full overflow-hidden relative bg-white border-b border-slate-50">
+                    
                     <img
                       src={imageMap[ev.image] || "https://placehold.co/800x600/0C3A60/FFFFFF?text=Activity+Image"} 
                       alt={isArabic ? ev["Name (AR)"] : ev["Name (EN)"]}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out z-0 opacity-90"
+                      // 3. Changed back to object-contain so nothing is EVER chopped off
+                      // 4. Added a tiny p-4 padding so the flyer doesn't touch the absolute edges
+                      className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-700 ease-in-out z-0"
                       loading="lazy"
                     />
+                    
                     {/* Category Badge overlay */}
                     <div className="absolute top-4 right-4 z-20">
-                      <span className="bg-white/95 backdrop-blur-sm text-[#0C3A60] text-xs font-bold px-3 py-1.5 rounded-full shadow-sm">
+                      <span className="bg-white/95 backdrop-blur-sm text-[#0C3A60] text-xs font-bold px-3 py-1.5 rounded-full shadow-sm border border-slate-100">
                         {cleanCategory === "workshops" 
                           ? (isArabic ? "ورشة عمل" : "Workshop") 
                           : (isArabic ? "فعالية مجتمعية" : "Community Event")}
                       </span>
                     </div>
                   </div>
-
                   {/* Content Section */}
                   <div className="p-8 flex-1 flex flex-col">
                     
