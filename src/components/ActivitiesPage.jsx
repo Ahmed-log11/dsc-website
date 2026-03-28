@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import SimpleNavbar from "../components/SimpleNavbar"; // Make sure this path is correct!
+import SimpleNavbar from "../components/SimpleNavbar"; 
 import activitiesData from "../data/activitiesData.json"
 import EdaImg from "../assets/Eda.jpg";
 import planningImg from "../assets/planning.jpg";
