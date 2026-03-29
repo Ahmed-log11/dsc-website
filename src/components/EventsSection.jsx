@@ -13,13 +13,13 @@ const previousEvents = useMemo(
     () => [
       {
         id: "workshops",
-        image: WorkshopImage, // The picture the media team made
+        image: WorkshopImage, 
         titleKey: "events.previous.items.workshops.title",
         descKey: "events.previous.items.workshops.desc",
       },
       {
         id: "community",
-        image: EventsImage, // The picture the media team made
+        image: EventsImage,
         titleKey: "events.previous.items.community.title",
         descKey: "events.previous.items.community.desc",
       },
@@ -27,7 +27,7 @@ const previousEvents = useMemo(
     []
   );
 
-  // Upgraded Tab Classes for a smoother, pill-like toggle
+  
   const activeTabClass = "bg-[#35C6A8] text-white shadow-md";
   const inactiveTabClass = "bg-slate-100 text-slate-500 hover:bg-slate-200 hover:text-slate-700";
 
@@ -72,7 +72,7 @@ const previousEvents = useMemo(
         {/* Content Area */}
         {tab === "upcoming" ? (
           
-          /* Upgraded "Stay Tuned" Empty State */
+         
           <div className="flex justify-center py-10">
             <div className="w-full max-w-2xl rounded-3xl border-2 border-dashed border-slate-200 bg-slate-50/50 px-8 py-14 flex flex-col items-center text-center transition-all hover:border-[#35C6A8]/40 hover:bg-slate-50">
               {/* Calendar/Announcement Icon */}
@@ -93,7 +93,6 @@ const previousEvents = useMemo(
 
        ) : (
           
-          /* Upgraded Previous Event Cards - Centered Two-Column Grid */
           <div className="flex flex-col items-center">
             
             {/* The Two Cards */}
@@ -103,7 +102,7 @@ const previousEvents = useMemo(
                   key={ev.id}
                   className="group flex flex-col h-full rounded-3xl border border-slate-100 overflow-hidden bg-white shadow-sm hover:shadow-2xl hover:shadow-slate-200/50 hover:-translate-y-2 transition-all duration-300"
                 >
-                  {/* Removed fixed height! Now it stretches edge-to-edge seamlessly */}
+                
                   <div className="w-full overflow-hidden relative bg-[#F8F9FA] border-b border-slate-100">
                     <img
                       src={ev.image}

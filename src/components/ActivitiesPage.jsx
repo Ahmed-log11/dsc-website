@@ -2,16 +2,16 @@ import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import SimpleNavbar from "../components/SimpleNavbar"; 
 import activitiesData from "../data/activitiesData.json"
-import EdaImg from "../assets/Eda.jpg";
-import planningImg from "../assets/planning.jpg";
-import AIbootcampImg from "../assets/AIbootcamp.jpg";
-import IntroDsImg from "../assets/IntroDs.jpg";
-import OrientationDayImg from "../assets/OrientationDay.jpg";
-import DsDayImg from "../assets/DsDay.jpg";
-import EidImg from "../assets/Eid.jpg";
-import RoboconImg from "../assets/Robocon.jpg";
-import ChampionsSeriesImg from "../assets/ChampionsSeries.jpg";
-import TaleImg from "../assets/Tale.jpg";
+import EdaImg from "../assets/previousActivities/Eda.jpeg";
+import planningImg from "../assets/previousActivities/planning.jpeg";
+import AIbootcampImg from "../assets/previousActivities/AIbootcamp.jpeg";
+import IntroDsImg from "../assets/previousActivities/IntroDs.jpeg";
+import OrientationDayImg from "../assets/previousActivities/OrientationDay.jpeg";
+import DsDayImg from "../assets/previousActivities/DsDay.jpeg";
+import EidImg from "../assets/previousActivities/Eid.jpeg";
+import RoboconImg from "../assets/previousActivities/Robocon.jpeg";
+import ChampionsSeriesImg from "../assets/previousActivities/ChampionsSeries.jpeg";
+import TaleImg from "../assets/previousActivities/Tale.jpeg";
 const imageMap = {
   "Eda": EdaImg,
   "planning": planningImg,
@@ -36,7 +36,7 @@ export default function ActivitiesPage() {
     window.scrollTo(0, 0);
   }, []);
 
-  // BULLETPROOF FILTER: Trims hidden spaces from your spreadsheet categories
+  //  Trims hidden spaces from spreadsheet categories
   const filteredActivities = activitiesData.filter((ev) => {
     const itemCat = (ev["Category"] || "").trim().toLowerCase();
     return filter === "all" || itemCat === filter;
@@ -98,16 +98,13 @@ export default function ActivitiesPage() {
                   className="group flex flex-col h-full rounded-3xl border border-slate-100 overflow-hidden bg-white shadow-sm hover:shadow-2xl hover:shadow-slate-200/50 hover:-translate-y-2 transition-all duration-300"
                 >
                   {/* Image Section */}
-               {/* Image Section */}
-                  {/* 1. Changed h-56 to h-72 to make the box taller for your flyers */}
-                  {/* 2. Set the background to pure bg-white so it blends with your image backgrounds */}
-                  <div className="h-62 w-full overflow-hidden relative bg-white border-b border-slate-50">
+
+                <div className="h-auto w-full overflow-hidden relative bg-white border-b border-slate-50">
                     
                     <img
                       src={imageMap[ev.image] || "https://placehold.co/800x600/0C3A60/FFFFFF?text=Activity+Image"} 
                       alt={isArabic ? ev["Name (AR)"] : ev["Name (EN)"]}
-                      // 3. Changed back to object-contain so nothing is EVER chopped off
-                      // 4. Added a tiny p-4 padding so the flyer doesn't touch the absolute edges
+                     
                       className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-700 ease-in-out z-0"
                       loading="lazy"
                     />
