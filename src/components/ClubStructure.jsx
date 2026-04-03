@@ -37,13 +37,13 @@ export default function ClubStructure() {
     <>
     <SimpleNavbar />
     <section
-      className="bg-slate-50 border-t border-slate-100 min-h-screen py-20 pb-24 lg:py-28"
+      className="bg-slate-50  min-h-screen py-20 pb-24 lg:py-28"
       dir={isArabic ? "rtl" : "ltr"}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Page Title */}
-        <div className="text-center mb-16">
-          <h1 className="text-[#0C3A60] font-bold text-3xl md:text-4xl lg:text-5xl font-sans">
+        <div className="text-center mb-12 mt-10 md:mt-16">
+           <h1 className="text-[#0C3A60] font-bold text-4xl lg:text-5xl mb-4">
             {isArabic ? "تعرف على فريقنا" : "Meet the Team"}
           </h1>
           {/* Subtitle */}
