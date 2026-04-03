@@ -1,4 +1,5 @@
-import { Routes, Route } from "react-router-dom";
+// 1. Add useLocation to your imports
+import { Routes, Route, useLocation } from "react-router-dom";
 import ClubStructure from "./components/ClubStructure";
 import Navbar from "./components/Navbar";
 import Herosection from "./components/Herosection";
@@ -9,6 +10,7 @@ import EventsSection from "./components/EventsSection";
 import XPosts from "./components/XPosts";
 import FooterSection from "./components/FooterSection";
 import ActivitiesPage from "./components/ActivitiesPage";
+
 function HomePage() {
   return (
     <>
@@ -38,9 +40,18 @@ function HomePage() {
 }
 
 export default function App() {
+  // 2. Ask React exactly what URL we are currently on
+  const location = useLocation();
+  const currentPath = location.pathname.toLowerCase();
+
+  // 3. Create a rule: Are we on the activities or club-structure page? 
+  const hideMainNavbar = currentPath.includes("/activities") || currentPath.includes("/club-structure");
+
   return (
     <div className="min-h-screen bg-white text-slate-900 font-sans overflow-x-hidden">
-      <Navbar />
+      
+      {/* 4. Only show the main Navbar if hideMainNavbar is FALSE */}
+      {!hideMainNavbar && <Navbar />}
 
       <Routes>
         <Route path="/" element={<HomePage />} />

@@ -10,8 +10,7 @@ export default function SimpleNavbar() {
   return (
     <header className="fixed top-0 left-0 w-full z-50">
       
-      {/* The Colorful Gradient Top Border */}
-      <div className="h-1.5 w-full bg-gradient-to-r from-[#FF7043] via-[#0C3A60] to-[#35C6A8]" />
+    
 
       {/* Glassmorphism Nav Body */}
       <nav
