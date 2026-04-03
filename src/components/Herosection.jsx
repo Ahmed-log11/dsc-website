@@ -22,7 +22,7 @@ const dataTextColumn = [
   "Data Engineering",
   "Big Data Visualization",
   "100 Men vs 1 Gorilla"
-].join(" • ") + " • "; // Add a separator for the marquee loop
+].join(" • ") + " • "; 
 
 export default function Herosection() {
   const { t, i18n } = useTranslation();
@@ -30,7 +30,6 @@ export default function Herosection() {
   // ====== ACCENT STATE (logo hover) ======
   const [accentMode, setAccentMode] = useState("orange");
 
-  // Re-tuned for Light Mode: Same base colors, but for the "watercolor" effect.
   const ACCENTS = useMemo(
     () => ({
       blue: "#0c3a60",
@@ -48,9 +47,6 @@ export default function Herosection() {
  useEffect(() => {
     if (!fullText) return;
 
-    // INCREASE THESE NUMBERS:
-    // 150ms for typing (slower and more rhythmic)
-    // 80ms for deleting (slow enough to follow)
     const speed = isDeleting ? 80 :100; 
 
     const timer = setTimeout(() => {
@@ -88,12 +84,12 @@ export default function Herosection() {
   return (
     <section
       id="home"
-      // Change from text-white to text-slate-900 for Light Mode.
+ 
       className="relative min-h-screen text-slate-900 overflow-hidden font-sans"
       style={{ "--accent": ACCENTS[accentMode] }}
     >
       {/* ====== NEW BACKGROUND LAYERS ====== */}
-      {/* 1. Rich Light Tech Slate/White Base */}
+  
       <div className="absolute inset-0 bg-[#F9FAFB] transition-colors duration-700">
 {/* 2. Flawless Horizontal Infinite Data Streams (Single Lines) */}
         <div 
@@ -141,7 +137,6 @@ export default function Herosection() {
             </div>
           ))}
         </div>
-        {/* 3. Re-tuned dot grid texture (darker) */}
         <div
           className="absolute inset-0 opacity-[0.08] pointer-events-none z-[1]"
           style={{

@@ -21,7 +21,7 @@ export default function Footer() {
         >
           <path
             d="M0,40 C240,120 480,120 720,80 960,40 1200,40 1440,80 L1440,0 L0,0 Z"
-            fill="#F8FAFC" /* Changed from "white" to match the XPosts bg-slate-50 */
+            fill="#F8FAFC" 
           />
         </svg>
       </div>

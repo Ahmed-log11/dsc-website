@@ -50,7 +50,7 @@ export default function XPosts() {
   }, [isArabic]);
 
   return (
-    // 1. Zebra Striping: Section is now bg-slate-50 to contrast with Events
+    // 1. Zebra Striping
     <section className="py-20 lg:py-28 bg-slate-50 relative" dir={isArabic ? "rtl" : "ltr"}>
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         
@@ -64,7 +64,7 @@ export default function XPosts() {
         {/* Twitter Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {tweetIds.map((id) => (
-            // 2. Upgraded Wrapper Card: Matches the Departments and Events hover physics!
+            // 2. Upgraded Wrapper Card
             <div
               key={id}
               className="bg-white rounded-[2rem] p-4 sm:p-5 shadow-sm border border-slate-100 hover:-translate-y-2 hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-300 flex flex-col justify-center overflow-hidden"

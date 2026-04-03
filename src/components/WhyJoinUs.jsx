@@ -82,7 +82,7 @@ export default function WhyJoinUs() {
             ))}
           </div>
 
-          {/* DESKTOP ONLY BUTTON: Hidden on mobile (hidden md:flex) */}
+          {/* DESKTOP ONLY BUTTON: Hidden on mobile  */}
           <div className={`hidden md:flex mt-8 flex-col ${isArabic ? 'items-end' : 'items-start'}`}>
             <button 
               disabled

@@ -47,12 +47,11 @@ export default function AboutSection() {
           {/* ======================================= */}
           {/* IMAGE SIDE: Hidden on phones! */}
           {/* ======================================= */}
-          {/* Added 'hidden md:flex' to completely remove it from mobile screens */}
           <div className="hidden md:flex justify-center">
             <img
               src={abstractLogo}
               alt="Abstract Logo DSC"
-              // Stripped all blend modes and shadows. Just the raw, clean image.
+           
               className="w-[350px] lg:w-[450px]"
             />
           </div>

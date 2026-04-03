@@ -11,7 +11,7 @@ import DsDayImg from "../assets/previousActivities/DsDay.jpeg";
 import EidImg from "../assets/previousActivities/Eid.jpeg";
 import RoboconImg from "../assets/previousActivities/Robocon.jpeg";
 import ChampionsSeriesImg from "../assets/previousActivities/ChampionsSeries.jpeg";
-import TaleImg from "../assets/previousActivities/Tale.jpeg";
+import TaleImg from "../assets/previousActivities/taleSeries.jpeg";
 const imageMap = {
   "Eda": EdaImg,
   "planning": planningImg,

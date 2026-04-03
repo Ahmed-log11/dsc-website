@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import WorkshopImage from "../assets/WorkshopImage.jpg";
-import EventsImage from "../assets/EventsImage.jpg";
+import WorkshopImage from "../assets/WorkshopImage.jpeg";
+import EventsImage from "../assets/EventsImage.jpeg";
 import { Link } from "react-router-dom";
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa6";
 export default function EventsSection() {
