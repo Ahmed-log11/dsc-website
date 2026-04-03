@@ -1,11 +1,21 @@
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
+import { useLocation } from "react-router-dom"; 
 import LanguageSwitcher from "../LanguageSwitcher";
 
 export default function Navbar() {
   const { t, i18n } = useTranslation();
   const isArabic = i18n.language?.startsWith("ar");
   const [open, setOpen] = useState(false);
+  
+  // 2. Get the current URL path
+  const location = useLocation();
+
+  // 3. Hide this global navbar on the specific pages where you use SimpleNavbar
+
+  if (location.pathname === "/ActivitiesPage" || location.pathname === "/ClubStructure") {
+    return null;
+  }
 
   return (
     <header className="fixed top-0 left-0 w-full z-50">
@@ -32,7 +42,6 @@ export default function Navbar() {
 
         {/* Desktop Links */}
         <div className="hidden md:flex items-center gap-8 text-sm font-bold tracking-wide font-sans">
-          {/* NEW LINK ADDED HERE */}
           <a href="#why-join-us" className="text-slate-700 hover:text-[#FF7043] transition-colors">{t("navbar.whyJoinUs")}</a>
           <a href="#about" className="text-slate-700 hover:text-[#35C6A8] transition-colors">{t("navbar.about")}</a>
           <a href="#sections" className="text-slate-700 hover:text-[#0C3A60] transition-colors">{t("navbar.sections")}</a>
@@ -61,7 +70,7 @@ export default function Navbar() {
         dir={isArabic ? "rtl" : "ltr"}
       >
         <div className="flex flex-col p-6 space-y-6 font-bold text-lg text-slate-800 font-sans">
-         
+          
           <a href="#why-join-us" onClick={() => setOpen(false)} className="active:text-[#FF7043] border-b border-slate-50 pb-2">
             {t("navbar.whyJoinUs")}
           </a>
