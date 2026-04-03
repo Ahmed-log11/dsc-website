@@ -46,6 +46,12 @@ export default function ClubStructure() {
           <h1 className="text-[#0C3A60] font-bold text-3xl md:text-4xl lg:text-5xl font-sans">
             {isArabic ? "تعرف على فريقنا" : "Meet the Team"}
           </h1>
+          {/* Subtitle */}
+          <p className="text-slate-500 text-lg max-w-2xl mx-auto mt-2">
+            {isArabic 
+              ? "العقول والخوارزميات وراء كل هذا الإبداع" 
+              : "The minds and algorithms behind the magic"}
+          </p>
         </div>
 
         <div className="space-y-16 sm:space-y-20">
