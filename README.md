@@ -2,7 +2,7 @@
 A platform designed for the **Data Science Club (DSC)** community. This website serves as a central hub for both club members and data science enthusiasts to explore events, resources, and projects.
 
 # 🔗 Live Demo
-Click here to visit the website
+https://kau-data-science-club.vercel.app/
 
 # 🛠️ Tech Stack
 Frontend: HTML, CSS, JavaScript, React.
@@ -22,7 +22,7 @@ Members Portal: A dedicated page showcasing club members.
 # 👥 Contributors
 Special thanks to the team:
 
-@Ahmed-log11 (Project Lead / Data Management)
+@Ahmed-log11 (Project Lead)
 
 @rimas-ri
 
